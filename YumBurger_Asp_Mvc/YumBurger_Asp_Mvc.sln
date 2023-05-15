@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.4.33403.182
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "YumBurger_Asp_Mvc.UI", "YumBurger_Asp_Mvc.UI\YumBurger_Asp_Mvc.UI.csproj", "{02FE5B10-B3AB-48C6-BD5F-7D636BA0D746}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{02FE5B10-B3AB-48C6-BD5F-7D636BA0D746}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{02FE5B10-B3AB-48C6-BD5F-7D636BA0D746}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{02FE5B10-B3AB-48C6-BD5F-7D636BA0D746}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{02FE5B10-B3AB-48C6-BD5F-7D636BA0D746}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {DC32F9A4-1461-44C6-87DF-B5D7983A3966}
+	EndGlobalSection
+EndGlobal

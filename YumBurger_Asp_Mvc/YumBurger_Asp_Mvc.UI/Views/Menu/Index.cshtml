@@ -1,0 +1,47 @@
+﻿@model MenusExtrasVM
+
+@{
+    ViewData["Title"] = "Index";
+}
+<h1 class="text-center h1 bg-dark bg-gradient text-white">Menu</h1>
+
+<div class="row justify-content-center text-center m-3 border-bottom">
+    @foreach (var menu in Model.Menus)
+    {
+        <div class="card border-0 m-3" style="width: 22rem;">
+            <img class="card-img-top" src="~/assest/img/menuPictures/@menu.PicturePath" alt="Card image cap">
+            <div class="card-body">
+                <h5 class="card-title">@menu.Name</h5>
+                <p class="card-text">@menu.Description</p>
+            </div>
+            <ul class="list-group list-group-flush">
+                <li class="list-group-item text-black-50"> @(menu.Price + " ₺")  </li>
+            </ul>
+                  <div class="card-body text-center">
+                <a href="#" class="card-link-item">Buy Now</a>
+            </div>
+        </div>
+    }
+</div>
+
+
+<h1 class="text-center h1 bg-dark bg-gradient text-white">Extra</h1>
+
+<div class="row justify-content-center m-3">
+    @foreach (var extra in Model.Extra)
+    {
+        <div class="card m-3" style="width: 22rem;">
+            <img class="card-img-top" src="~/assest/img/ExtrasPictures/@extra.PicturePath" alt="Card image cap">
+            <div class="card-body">
+                <h5 class="card-title">@extra.Name</h5>
+                <p class="card-text">@extra.Description</p>
+            </div>
+            <ul class="list-group list-group-flush">
+                <li class="list-group-item text-black-50"> @(extra.Price + " ₺")  </li>
+            </ul>
+            <div class="card-body text-center">
+                <a href="#" class="card-link-item">Buy Now</a>
+            </div>
+        </div>
+    }
+</div>
