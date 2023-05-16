@@ -77,6 +77,7 @@ namespace MVC_Hamburger.Data.Migrations
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUser", b =>
                 {
                     b.Property<string>("Id")
+                        .ValueGeneratedOnAdd()
                         .HasColumnType("nvarchar(450)");
 
                     b.Property<int>("AccessFailedCount")
@@ -305,15 +306,18 @@ namespace MVC_Hamburger.Data.Migrations
                     b.Property<DateTime>("ActualArrivalDate")
                         .HasColumnType("datetime");
 
+                    b.Property<string>("AppUserId")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(450)");
+
                     b.Property<DateTime>("EstimatedArrivalDate")
                         .HasColumnType("datetime");
 
                     b.Property<DateTime>("OrderDate")
                         .HasColumnType("datetime");
 
-                    b.Property<string>("ShoppingCartId")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(450)");
+                    b.Property<int>("OrderStatus")
+                        .HasColumnType("int");
 
                     b.Property<decimal>("TotalPrice")
                         .HasColumnType("decimal(18,2)");
@@ -324,7 +328,7 @@ namespace MVC_Hamburger.Data.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("ShoppingCartId");
+                    b.HasIndex("AppUserId");
 
                     b.ToTable("Orders");
                 });
@@ -365,27 +369,14 @@ namespace MVC_Hamburger.Data.Migrations
                     b.ToTable("OrdersMenus");
                 });
 
-            modelBuilder.Entity("YumBurger_Asp_Mvc.UI.Models.ShoppingCart", b =>
-                {
-                    b.Property<string>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("nvarchar(450)");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("ShoppingCarts");
-                });
-
             modelBuilder.Entity("YumBurger_Asp_Mvc.UI.Models.AppUser", b =>
                 {
                     b.HasBaseType("Microsoft.AspNetCore.Identity.IdentityUser");
 
                     b.Property<string>("Address")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("PicturePath")
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
 
                     b.HasDiscriminator().HasValue("AppUser");
                 });
@@ -443,14 +434,14 @@ namespace MVC_Hamburger.Data.Migrations
 
             modelBuilder.Entity("YumBurger_Asp_Mvc.UI.Models.Order", b =>
                 {
-                    b.HasOne("YumBurger_Asp_Mvc.UI.Models.ShoppingCart", "ShoppingCart")
+                    b.HasOne("YumBurger_Asp_Mvc.UI.Models.AppUser", "AppUser")
                         .WithMany("Orders")
-                        .HasForeignKey("ShoppingCartId")
+                        .HasForeignKey("AppUserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired()
-                        .HasConstraintName("FK_Orders_ShoppingCarts");
+                        .HasConstraintName("FK_Orders_AppUsers");
 
-                    b.Navigation("ShoppingCart");
+                    b.Navigation("AppUser");
                 });
 
             modelBuilder.Entity("YumBurger_Asp_Mvc.UI.Models.OrdersExtra", b =>
@@ -495,18 +486,6 @@ namespace MVC_Hamburger.Data.Migrations
                     b.Navigation("Order");
                 });
 
-            modelBuilder.Entity("YumBurger_Asp_Mvc.UI.Models.ShoppingCart", b =>
-                {
-                    b.HasOne("YumBurger_Asp_Mvc.UI.Models.AppUser", "AppUser")
-                        .WithOne("ShoppingCart")
-                        .HasForeignKey("YumBurger_Asp_Mvc.UI.Models.ShoppingCart", "Id")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired()
-                        .HasConstraintName("FK_ShoppingCarts_Users");
-
-                    b.Navigation("AppUser");
-                });
-
             modelBuilder.Entity("YumBurger_Asp_Mvc.UI.Models.Extra", b =>
                 {
                     b.Navigation("OrdersExtras");
@@ -524,14 +503,9 @@ namespace MVC_Hamburger.Data.Migrations
                     b.Navigation("OrdersMenus");
                 });
 
-            modelBuilder.Entity("YumBurger_Asp_Mvc.UI.Models.ShoppingCart", b =>
-                {
-                    b.Navigation("Orders");
-                });
-
             modelBuilder.Entity("YumBurger_Asp_Mvc.UI.Models.AppUser", b =>
                 {
-                    b.Navigation("ShoppingCart");
+                    b.Navigation("Orders");
                 });
 #pragma warning restore 612, 618
         }

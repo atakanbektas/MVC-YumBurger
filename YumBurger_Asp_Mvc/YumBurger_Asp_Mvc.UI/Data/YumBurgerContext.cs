@@ -17,14 +17,11 @@ namespace YumBurger_Asp_Mvc.UI.Data
         {
 
         }
-
         public virtual DbSet<Extra> Extras { get; set; } = null!;
         public virtual DbSet<Menu> Menus { get; set; } = null!;
         public virtual DbSet<Order> Orders { get; set; } = null!;
         public virtual DbSet<OrdersExtra> OrdersExtras { get; set; } = null!;
         public virtual DbSet<OrdersMenu> OrdersMenus { get; set; } = null!;
-        public virtual DbSet<ShoppingCart> ShoppingCarts { get; set; } = null!;
-        //public virtual DbSet<AppUser> Users { get; set; } = null!;
 
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
@@ -71,11 +68,11 @@ namespace YumBurger_Asp_Mvc.UI.Data
 
                 entity.Property(e => e.UserAddress).HasMaxLength(500);
 
-                entity.HasOne(d => d.ShoppingCart)
+                entity.HasOne(d => d.AppUser)
                     .WithMany(p => p.Orders)
-                    .HasForeignKey(d => d.ShoppingCartId)
+                    .HasForeignKey(d => d.AppUserId)
                     .OnDelete(DeleteBehavior.Cascade)
-                    .HasConstraintName("FK_Orders_ShoppingCarts");
+                    .HasConstraintName("FK_Orders_AppUsers");
             });
 
             modelBuilder.Entity<OrdersExtra>(entity =>
@@ -112,43 +109,15 @@ namespace YumBurger_Asp_Mvc.UI.Data
                     .HasConstraintName("FK_OrdersMenus_Orders");
             });
 
-            modelBuilder.Entity<ShoppingCart>(entity =>
+            modelBuilder.Entity<AppUser>(entity =>
             {
                 entity.Property(e => e.Id).ValueGeneratedOnAdd();
-
-                entity.HasOne(d => d.AppUser)
-                    .WithOne(p => p.ShoppingCart)
-                    .HasForeignKey<ShoppingCart>(d => d.Id)
-                    .OnDelete(DeleteBehavior.Cascade)
-                    .HasConstraintName("FK_ShoppingCarts_Users");
+                entity.Property(e => e.Address).HasMaxLength(50);
             });
 
-            //modelBuilder.Entity<AppUser>(entity =>
-            //{
-
-            //    entity.Property(e => e.Address).HasMaxLength(50);
-
-            //    entity.Property(e => e.PicturePath).HasMaxLength(500);
-            //});
-
-
             base.OnModelCreating(modelBuilder);
-            //OnModelCreatingPartial(modelBuilder);
 
-            //modelBuilder.Entity<IdentityUserToken<string>>(entity =>
-            //{
-            //    entity.HasKey(e => new { e.UserId, e.LoginProvider, e.Name });
-            //});
-
-            //modelBuilder.Entity<IdentityUserRole<string>>().HasNoKey();
-
-            //modelBuilder.Entity<IdentityUserLogin<string>>(entity =>
-            //{
-            //    entity.HasKey(e => new { e.LoginProvider, e.ProviderKey });
-            //});
-            // modelBuilder.Entity<IdentityUserLogin<string>>().HasKey(x => x.UserId);
         }
 
-        // partial void OnModelCreatingPartial(ModelBuilder modelBuilder);
     }
 }

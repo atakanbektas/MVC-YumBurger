@@ -49,25 +49,6 @@ public class AccountController : Controller
         return View();
     }
 
-    //[HttpPost]
-    //public async Task<IActionResult> Login(LoginVM model, string returnUrl)
-    //{
-    //    returnUrl ??= Url.Content("~/");
-
-    //    if (ModelState.IsValid)
-    //    {
-    //        var result = await _signInManager.PasswordSignInAsync(model.Email, model.Password, model.RememberMe, lockoutOnFailure: false);
-
-    //        if (result.Succeeded)
-    //        {
-    //            return LocalRedirect(returnUrl);
-    //        }
-
-    //        ModelState.AddModelError(string.Empty, "Geçersiz giriş denemesi.");
-    //    }
-
-    //    return View(model);
-    //}
 
     [HttpPost]
     public async Task<IActionResult> Login(LoginVM model)
