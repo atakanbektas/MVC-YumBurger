@@ -1,0 +1,68 @@
+﻿@model YumBurger_Asp_Mvc.UI.Models.Extra
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h1>Details</h1>
+
+<form asp-controller="Extra" asp-action="AddChart">
+    <div class="row">
+        <h4 class="col-sm-12">Extra</h4>
+        <hr />
+        <dl class="row col-md-4">
+        </dl>
+        <dl class="row col-md-8">
+            <dt class="col-md-2">
+                @Html.DisplayNameFor(model => model.Id)
+            </dt>
+            <dd class="col-md-10">
+                @Html.DisplayFor(model => model.Id)
+                <input type="hidden" asp-for="Id" />
+            </dd>
+            <dt class="col-md-2">
+                @Html.DisplayNameFor(model => model.Name)
+            </dt>
+            <dd class="col-md-10">
+                @Html.DisplayFor(model => model.Name)
+                <input type="hidden" asp-for="Name" />
+            </dd>
+            <dt class="col-md-2">
+                @Html.DisplayNameFor(model => model.Price)
+            </dt>
+            <dd class="col-md-10">
+                @Html.DisplayFor(model => model.Price)
+                <input type="hidden" asp-for="Price" />
+            </dd>
+            <dt class="col-md-2">
+                @Html.DisplayNameFor(model => model.Description)
+            </dt>
+            <dd class="col-md-10">
+                @Html.DisplayFor(model => model.Description)
+                <input type="hidden" asp-for="Description" />
+            </dd>
+            <dt class="col-md-2">
+                @Html.DisplayNameFor(model => model.PicturePath)
+            </dt>
+            <dd class="col-md-10">
+                @Html.DisplayFor(model => model.PicturePath)
+                <input type="hidden" asp-for="PicturePath" />
+            </dd>
+
+            <dt class="col-md-2">
+                Quantity
+            </dt>
+            <dd class="col-md-10">                
+                <input type="number" value="1" name="quantity" />
+            </dd>
+
+            <div>
+                <button type="submit" class="btn btn-outline-success">Add My Chart</button>
+                <a class="btn btn-outline-warning" asp-controller="Menu" asp-action="Index">Back to Shopping</a>
+                <a class="btn btn-outline-danger" asp-controller="Menu" asp-action="Index">Go to Chart</a>
+            </div>
+        </dl>
+    </div>
+</form>
+
+

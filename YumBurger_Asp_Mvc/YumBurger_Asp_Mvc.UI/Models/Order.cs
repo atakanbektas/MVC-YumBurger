@@ -12,10 +12,10 @@ namespace YumBurger_Asp_Mvc.UI.Models
         }
 
         public int Id { get; set; }
-        public string AppUserId { get; set; } = null!;
-        public DateTime OrderDate { get; set; }
-        public DateTime EstimatedArrivalDate { get; set; }
-        public DateTime ActualArrivalDate { get; set; }
+        public string? AppUserId { get; set; } = null!;
+        public DateTime? OrderDate { get; set; }
+        public DateTime? EstimatedArrivalDate { get; set; }
+        public DateTime? ActualArrivalDate { get; set; }
         public decimal TotalPrice { get; set; }
         public OrderStatus OrderStatus { get; set; }
         public string? UserAddress { get; set; }

@@ -1,6 +1,7 @@
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using YumBurger_Asp_Mvc.UI.Data;
+using YumBurger_Asp_Mvc.UI.Models;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -9,17 +10,21 @@ var connectionString = builder.Configuration.GetConnectionString("ConnectionStr"
 builder.Services.AddDbContext<YumBurgerContext>(options =>
     options.UseSqlServer(connectionString));
 
+builder.Services.AddIdentity<AppUser, IdentityRole>(options =>
+{
+    options.User.RequireUniqueEmail = true;
+})
+    .AddEntityFrameworkStores<YumBurgerContext>()
+    .AddDefaultTokenProviders();
 
-builder.Services.AddIdentity<IdentityUser, IdentityRole>()
-     .AddEntityFrameworkStores<YumBurgerContext>();
 
 builder.Services.ConfigureApplicationCookie(options =>
 {
     options.Cookie.Name = "UserCookie";
     options.SlidingExpiration = true;
     options.ExpireTimeSpan = TimeSpan.FromDays(30);
-}
-);
+});
+
 builder.Services.Configure<IdentityOptions>(options =>
 {
     options.Password.RequireDigit = false;
@@ -30,14 +35,10 @@ builder.Services.Configure<IdentityOptions>(options =>
     options.Password.RequiredUniqueChars = 0;
 });
 
-
-
 builder.Services.AddRazorPages();
-
 builder.Services.AddDatabaseDeveloperPageExceptionFilter();
 builder.Services.AddAuthentication();
 builder.Services.AddAuthorization();
-
 builder.Services.AddControllersWithViews();
 
 var app = builder.Build();
@@ -56,9 +57,7 @@ else
 
 app.UseHttpsRedirection();
 app.UseStaticFiles();
-
 app.UseRouting();
-
 app.UseAuthentication();
 app.UseAuthorization();
 
@@ -68,3 +67,4 @@ app.MapControllerRoute(
 app.MapRazorPages();
 
 app.Run();
+
