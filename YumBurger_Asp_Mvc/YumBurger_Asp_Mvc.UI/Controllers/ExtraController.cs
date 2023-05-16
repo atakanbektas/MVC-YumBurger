@@ -24,6 +24,8 @@ namespace YumBurger_Asp_Mvc.UI.Controllers
             return RedirectToAction("Index", "Menu");
         }
 
+
+
         [HttpPost]
         public IActionResult Details(int extraId)
         {
@@ -38,11 +40,9 @@ namespace YumBurger_Asp_Mvc.UI.Controllers
             //var orderInChart = user.Orders.FirstOrDefault(o => o.OrderStatus == OrderStatus.InChart);
             var orderInChart = await _db.Orders.Where(o => o.AppUserId == user.Id && o.OrderStatus == OrderStatus.InChart).FirstOrDefaultAsync();
 
-
-
             if (orderInChart != null) // exist order
             {
-                orderInChart.TotalPrice += extra.Price;
+                orderInChart.TotalPrice += extra.Price * quantity;
                 var ordersExtra = new OrdersExtra()
                 {
                     Order = orderInChart,
@@ -60,7 +60,7 @@ namespace YumBurger_Asp_Mvc.UI.Controllers
                     AppUser = user,
                     UserAddress = user.Address,
                 };
-                order.TotalPrice += extra.Price;
+                order.TotalPrice += extra.Price * quantity;
 
                 var ordersExtra = new OrdersExtra()
                 {
