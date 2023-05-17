@@ -1,4 +1,4 @@
-﻿@model Order
+﻿@*@model Order
 
 @{
     ViewData["Title"] = "Index";
@@ -17,20 +17,20 @@
     }
     else // exist order
     {
-        <h1 class="h1 text-primary text-md-center">Your Basket</h1>
+        <h1 class="h1 text-primary text-md-center mt-5">Your Basket</h1>
         <hr />
         <div class="row">
 
             <div class="col-md-9">
-                <table class="table  table-active text-center ">
+                <table class="table text-center ">
                     <thead>
                         <tr>
-                            <th scope="col">Name</th>
-                            <th scope="col">Picture</th>
-                            <th scope="col">Quantity</th>
-                            <th scope="col"> Price</th>
-                            <th scope="col">Total Price</th>
-                            <th scope="col">Cancel</th>
+                            <th class="shadow-lg" scope="col">Name</th>
+                            <th class="shadow-lg" scope="col">Picture</th>
+                            <th class="shadow-lg" scope="col">Quantity</th>
+                            <th class="shadow-lg" scope="col"> Price</th>
+                            <th class="shadow-lg" scope="col">Total Price</th>
+                            <th class="shadow-lg" scope="col">Cancel</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -41,14 +41,14 @@
                                 {
                                     foreach (var item in Model.OrdersMenus)
                                     {
-                                    <tr>
-                                        <td>@item.Menu.Name</td>
-                                        <td class="w-25 h-25"><img class="w-25 h-25" src="~/assest/img/menuPictures/@item.Menu.PicturePath" alt="logo" /></td>
+                                    <tr class="shadow-lg">
+                                        <td >@item.Menu.Name</td>
+                                        <td class="w-25 h-25"><img class="w-25 h-25 shadow-lg" src="~/assest/img/menuPictures/@item.Menu.PicturePath" alt="logo" /></td>
                                         <td>@item.Quantity</td>
                                         <td>@item.Menu.Price ₺</td>
                                         <td>@(item.Menu.Price * item.Quantity) ₺</td>
                                         <td>
-                                            <a asp-action="Delete" asp-route-id="@item.MenuId">
+                                            <a asp-action="DeleteMenu" asp-route-id="@item.MenuId">
                                                 <i class="fa-solid fa-rectangle-xmark" style="color: #ff6600;"></i>
                                             </a>
                                         </td>
@@ -59,14 +59,14 @@
                                 {
                                     foreach (var item in Model.OrdersExtras)
                                     {
-                                    <tr>
+                                    <tr class="shadow-lg">
                                         <td>@item.Extra.Name</td>
                                         <td class="w-25 h-25"><img class="w-25 h-25" src="~/assest/img/ExtrasPictures/@item.Extra.PicturePath" alt="logo" /></td>
                                         <td>@item.Quantity</td>
                                         <td>@item.Extra.Price ₺</td>
                                         <td>@(item.Extra.Price * item.Quantity) ₺</td>
                                         <td>
-                                            <a asp-action="Delete" asp-route-id="@item.ExtraId">
+                                            <a asp-action="DeleteExtra" asp-route-id="@item.ExtraId">
                                                 <i class="fa-solid fa-rectangle-xmark" style="color: #ff6600;"></i>
                                             </a>
                                         </td>
@@ -81,11 +81,14 @@
                 </table>
             </div>
             <div class="col-md-3">
-                @*<div class="col-3 row  position-fixed" style="top: 300px">*@
                 <div class="table row" style="position:sticky; top:300px;">
                     <a class="btn btn-primary mb-3">Buy Now</a>
-                    <a class="btn btn-primary mb-3">Continue Shopping</a>
+                    <a asp-controller="Menu" asp-action="Index" class="btn btn-primary mb-3">Continue Shopping</a>
                     <a asp-controller="Order" asp-action="ClearAll" class="btn btn-danger">Clear All</a>
+                    <div class="shadow mt-3">
+                    <h3 class="h2 text-primary ">Total Amount : <i class="text-dark h4">@Model.TotalPrice  ₺</i> </h3>
+
+                    </div>
                 </div>
             </div>
 
@@ -96,6 +99,170 @@
 
     }
 }
+*@
 
 
+@model Order
 
+@{
+    ViewData["Title"] = "Index";
+}
+
+@{
+    if (Model is null) // doesn't have order
+    {
+        <div class="alert alert-danger">
+            <strong>Your Basket is empty!</strong>
+            <a asp-controller="Menu" class="btn btn-primary ms-3">Start Shopping</a>
+        </div>
+    }
+    else // exist order
+    {
+        <h1 class="h1 text-primary text-md-center mt-5">Your Basket</h1>
+        <hr />
+        <div class="row">
+            <form asp-controller="Order" asp-route-id="@Model.Id" method="post">
+            <div class="col-md-9">
+                <table class="table text-center">
+                    <thead>
+                        <tr>
+                            <th class="shadow-lg" scope="col">Name</th>
+                            <th class="shadow-lg" scope="col">Picture</th>
+                            <th class="shadow-lg" scope="col">Quantity</th>
+                            <th class="shadow-lg" scope="col">Price</th>
+                            <th class="shadow-lg" scope="col">Total Price</th>
+                            <th class="shadow-lg" scope="col">Cancel</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        
+                            @{
+                                if (Model.OrdersMenus != null)
+                                {
+                                    foreach (var item in Model.OrdersMenus)
+                                    {
+                                    <tr class="shadow-lg">
+                                        <td>@item.Menu.Name</td>
+                                        <td class="w-25 h-25"><img class="w-25 h-25 shadow-lg" src="~/assest/img/menuPictures/@item.Menu.PicturePath" alt="logo" /></td>
+                                        <td>
+                                            <div class="input-group">
+                                                <span class="input-group-btn">
+                                                    <button type="button" class="btn btn-primary btn-number" data-type="minus" data-field="@("quantity_" + item.MenuId)">
+                                                        <span class="fa fa-minus"></span>
+                                                    </button>
+                                                </span>
+                                                <input type="text" name="@("quantity_" + item.MenuId)" class="form-control input-number" value="@item.Quantity" min="1">
+                                                <span class="input-group-btn">
+                                                    <button type="button" class="btn btn-primary btn-number" data-type="plus" data-field="@("quantity_" + item.MenuId)">
+                                                        <span class="fa fa-plus"></span>
+                                                    </button>
+                                                </span>
+                                            </div>
+                                        </td>
+                                        <td>@item.Menu.Price ₺</td>
+                                        <td>@(item.Menu.Price * item.Quantity) ₺</td>
+                                        <td>
+                                            <a asp-action="DeleteMenu" asp-route-id="@item.MenuId">
+                                                <i class="fa-solid fa-rectangle-xmark" style="color: #ff6600;"></i>
+                                            </a>
+                                        </td>
+                                    </tr>
+                                    }
+                                }
+                                if (Model.OrdersExtras != null)
+                                {
+                                    foreach (var item in Model.OrdersExtras)
+                                    {
+                                    <tr class="shadow-lg">
+                                        <td>@item.Extra.Name</td>
+                                        <td class="w-25 h-25"><img class="w-25 h-25" src="~/assest/img/ExtrasPictures/@item.Extra.PicturePath" alt="logo" /></td>
+                                        <td>
+                                            <div class="input-group">
+                                                <span class="input-group-btn">
+                                                    <button type="button" class="btn btn-primary btn-number" data-type="minus" data-field="@("quantity_" + item.ExtraId)">
+                                                        <span class="fa fa-minus"></span>
+                                                    </button>
+                                                </span>
+                                                <input type="text" name="@("quantity_" + item.ExtraId)" class="form-control input-number" value="@item.Quantity" min="1">
+                                                <span class="input-group-btn">
+                                                    <button type="button" class="btn btn-primary btn-number" data-type="plus" data-field="@("quantity_" + item.ExtraId)">
+                                                        <span class="fa fa-plus"></span>
+                                                    </button>
+                                                </span>
+                                            </div>
+                                        </td>
+                                        <td>@item.Extra.Price ₺</td>
+                                        <td>@(item.Extra.Price * item.Quantity) ₺</td>
+                                        <td>
+                                            <a asp-action="DeleteExtra" asp-route-id="@item.ExtraId">
+                                                <i class="fa-solid fa-rectangle-xmark" style="color: #ff6600;"></i>
+                                            </a>
+                                        </td>
+                                    </tr>
+                                    }
+                                }
+                            }
+                        
+                    </tbody>
+                </table>
+            </div>
+            <div class="col-md-3">
+                <div class="table row" style="position:sticky; top:300px;">
+                    <a asp-controller="Order" asp-action="Buy" class="btn btn-primary mb-3">Buy Now</a>
+                    <a asp-controller="Menu" asp-action="Index" class="btn btn-primary mb-3">Continue Shopping</a>
+                    <a asp-controller="Order" asp-action="ClearAll" class="btn btn-danger">Clear All</a>
+                    <div class="shadow mt-3">
+                        <h3 class="h2 text-primary">Total Amount : <i class="text-dark h4" id="totalAmount">@Model.TotalPrice ₺</i></h3>
+                    </div>
+                </div>
+            </div>
+            </form>
+        </div>
+    }
+}
+
+@section Scripts {
+    <script>
+        $(document).ready(function () {
+            $('.btn-number').click(function (e) {
+                e.preventDefault();
+
+                var fieldName = $(this).attr('data-field');
+                var type = $(this).attr('data-type');
+                var input = $('input[name="' + fieldName + '"]');
+                var currentVal = parseInt(input.val());
+
+                if (!isNaN(currentVal)) {
+                    if (type === 'minus') {
+                        if (currentVal > input.attr('min')) {
+                            input.val(currentVal - 1).change();
+                        }
+                    } else if (type === 'plus') {
+                        input.val(currentVal + 1).change();
+                    }
+                } else {
+                    input.val(0);
+                }
+            });
+
+            $('.input-number').change(function () {
+                var fieldName = $(this).attr('name');
+                var input = $('input[name="' + fieldName + '"]');
+                var quantity = parseInt(input.val());
+                var price = parseFloat(input.closest('tr').find('td:nth-child(4)').text().replace('₺', ''));
+                var totalPrice = quantity * price;
+                input.closest('tr').find('td:nth-child(5)').text(totalPrice.toFixed(2) + ' ₺');
+
+                var totalAmount = 0;
+                $('.input-number').each(function () {
+                    var itemQuantity = parseInt($(this).val());
+                    var itemPrice = parseFloat($(this).closest('tr').find('td:nth-child(4)').text().replace('₺', ''));
+                    totalAmount += itemQuantity * itemPrice;                    
+
+                });
+
+                $('#totalAmount').text(totalAmount.toFixed(2) + ' ₺');
+            });
+        });
+    </script>
+}

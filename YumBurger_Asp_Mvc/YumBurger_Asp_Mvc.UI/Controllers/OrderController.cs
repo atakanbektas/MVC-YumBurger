@@ -49,17 +49,62 @@ namespace YumBurger_Asp_Mvc.UI.Controllers
         }
 
 
-        [HttpPost]
+
         public async Task<IActionResult> DeleteMenu(int id)
         {
             var user = await _userManager.GetUserAsync(User);
-            var order = user.Orders.FirstOrDefault(o => o.Id == id);
+            var order = _db.Orders.Include(o => o.AppUser).Include(o => o.OrdersMenus).FirstOrDefault(o => o.AppUser == user && o.OrderStatus == OrderStatus.InChart);
+
+            if (order is not null)
+            {
+                var deletedOrdersMenu = await _db.OrdersMenus.FirstOrDefaultAsync(om => om.MenuId == id);
+                if (deletedOrdersMenu is not null)
+                {
+                    order.OrdersMenus.Remove(deletedOrdersMenu);
+                    if (order.OrdersExtras.Count == 0 && order.OrdersMenus.Count == 0)
+                    {
+                        _db.Orders.Remove(order);
+                    }
+                    await _db.SaveChangesAsync();
+                }
+            }
+            return RedirectToAction("Index");
+        }
+
+        public async Task<IActionResult> DeleteExtra(int id)
+        {
+            var user = await _userManager.GetUserAsync(User);
+            var order = _db.Orders.Include(o => o.AppUser).Include(o => o.OrdersMenus).FirstOrDefault(o => o.AppUser == user && o.OrderStatus == OrderStatus.InChart);
 
             if (order != null)
             {
-                var deletedMenu = _db.Menus.FirstOrDefaultAsync(m => m.Id == id);
+                var deletedOrdersExtra = await _db.OrdersExtras.FirstOrDefaultAsync(oe => oe.ExtraId == id);
+                if (deletedOrdersExtra is not null)
+                {
+                    order.OrdersExtras.Remove(deletedOrdersExtra);
+                    if (order.OrdersExtras.Count == 0 && order.OrdersMenus.Count == 0)
+                    {
+                        _db.Orders.Remove(order);
+                    }
+                    await _db.SaveChangesAsync();
+                }
             }
             return RedirectToAction("Index");
+        }
+
+        public async Task<IActionResult> Buy(int id)
+        {
+            var order = await _db.Orders.FirstOrDefaultAsync(o => o.Id == id);
+
+            if (order != null)
+            {
+                order.OrderStatus = OrderStatus.OnWay;
+                order.OrderDate = DateTime.Now;
+                order.EstimatedArrivalDate = DateTime.Now.AddMinutes(60);
+                await _db.SaveChangesAsync();
+            }
+
+            return View();
         }
     }
 }
