@@ -43,7 +43,6 @@ namespace YumBurger_Asp_Mvc.UI.Controllers
         public async Task<IActionResult> AddChart(Menu menu, int quantity = 1)
         {
             var user = await _userManager.GetUserAsync(User);
-            //var orderInChart = user.Orders.FirstOrDefault(o => o.OrderStatus == OrderStatus.InChart);
             var orderInChart = await _db.Orders.Where(o => o.AppUserId == user.Id && o.OrderStatus == OrderStatus.InChart).FirstOrDefaultAsync();
 
             if (orderInChart != null) // exist order
