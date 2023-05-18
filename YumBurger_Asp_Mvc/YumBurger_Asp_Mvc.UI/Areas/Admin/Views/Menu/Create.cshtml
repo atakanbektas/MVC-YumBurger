@@ -5,40 +5,35 @@
     Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
 }
 
-<h1>Create</h1>
+<h1 class="h1 text-primary text-md-center">Create</h1>
 
-<h4>Menu</h4>
-<hr />
-<div class="row">
+<h4 class="h4 text-primary text-md-center">Menu</h4>
+<hr class="shadow-lg" />
+<div class="row justify-content-center">
     <div class="col-md-4">
-        <form asp-action="Create">
+        <form asp-action="Create"  enctype="multipart/form-data">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <div class="form-group">
+            <div class="form-group mb-1">
                 <label asp-for="Name" class="control-label"></label>
-                <input asp-for="Name" class="form-control" />
+                <input asp-for="Name" value="Product Name" class="form-control" />
                 <span asp-validation-for="Name" class="text-danger"></span>
             </div>
-            <div class="form-group">
-                <label asp-for="CokePatotoSize" class="control-label"></label>
-                <select asp-for="CokePatotoSize" class="form-control"></select>
-                <span asp-validation-for="CokePatotoSize" class="text-danger"></span>
-            </div>
-            <div class="form-group">
+            <div class="form-group mb-1">
                 <label asp-for="Price" class="control-label"></label>
-                <input asp-for="Price" class="form-control" />
+                <input asp-for="Price" type="number" value="100" class="form-control" />
                 <span asp-validation-for="Price" class="text-danger"></span>
             </div>
-            <div class="form-group">
+            <div class="form-group mb-1">
                 <label asp-for="Description" class="control-label"></label>
                 <input asp-for="Description" class="form-control" />
                 <span asp-validation-for="Description" class="text-danger"></span>
             </div>
-            <div class="form-group">
+            <div class="form-group mb-1">
                 <label asp-for="PicturePath" class="control-label"></label>
-                <input asp-for="PicturePath" class="form-control" />
+                <input asp-for="PicturePath" type="file" class="form-control" />
                 <span asp-validation-for="PicturePath" class="text-danger"></span>
             </div>
-            <div class="form-group">
+            <div class="form-group mb-1">
                 <input type="submit" value="Create" class="btn btn-primary" />
             </div>
         </form>

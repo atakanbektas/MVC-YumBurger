@@ -215,8 +215,11 @@
     <script src="~/admin/assets/lib/tempusdominus/js/moment-timezone.min.js"></script>
     <script src="~/admin/assets/lib/tempusdominus/js/tempusdominus-bootstrap-4.min.js"></script>
 
+
     <!-- Template Javascript -->
     <script src="~/admin/assets/js/main.js"></script>
+
+    @await RenderSectionAsync("Scripts", required: false)
 </body>
 
 </html>

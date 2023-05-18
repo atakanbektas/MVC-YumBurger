@@ -45,7 +45,6 @@ namespace YumBurger_Asp_Mvc.UI.Data
                 entity.HasIndex(e => e.Name, "IX_Menus")
                     .IsUnique();
 
-                entity.Property(e => e.CokePatotoSize).HasMaxLength(50);
 
                 entity.Property(e => e.Description).HasMaxLength(500);
 

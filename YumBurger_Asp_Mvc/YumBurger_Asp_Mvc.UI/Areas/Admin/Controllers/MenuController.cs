@@ -43,18 +43,43 @@ namespace YumBurger_Asp_Mvc.UI.Areas.Admin.Views.Home
 
         // POST: MenuController/Create
         [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Create(IFormCollection collection)
+        public async Task<IActionResult> Create(Menu menu, IFormFile PicturePath, [FromServices] IWebHostEnvironment env)
         {
-            try
+            if (PicturePath != null && PicturePath.Length > 0)
             {
-                return RedirectToAction(nameof(Index));
+                var dosyaAdi = Path.GetFileName(PicturePath.FileName);
+                var picturesFolder = Path.Combine(env.WebRootPath, "assest", "img", "menuPictures");
+                var dosyaYolu = Path.Combine(picturesFolder, dosyaAdi);
+
+                if (!Directory.Exists(picturesFolder))
+                {
+                    Directory.CreateDirectory(picturesFolder);
+                }
+
+                using (var stream = new FileStream(dosyaYolu, FileMode.Create))
+                {
+                    await PicturePath.CopyToAsync(stream);
+                }
+
+                menu.PicturePath = dosyaAdi;
             }
-            catch
+
+            if (menu is not null)
             {
-                return View();
+                Menu createMenu = new()
+                {
+                    Name = menu.Name,
+                    PicturePath = menu.PicturePath,
+                    Price = menu.Price,
+                    Description = menu.Description,
+                };
+                await _context.Menus.AddAsync(createMenu);
+                await _context.SaveChangesAsync();
             }
+            return RedirectToAction("Index");
         }
+
+
 
         // GET: MenuController/Edit/5
         public ActionResult Edit(int id)
