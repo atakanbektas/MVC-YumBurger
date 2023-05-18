@@ -1,4 +1,4 @@
-﻿@*@model Order
+﻿@model Order
 
 @{
     ViewData["Title"] = "Index";
@@ -99,10 +99,10 @@
 
     }
 }
-*@
 
 
-@model Order
+
+@*@model Order
 
 @{
     ViewData["Title"] = "Index";
@@ -260,9 +260,9 @@
                     totalAmount += itemQuantity * itemPrice;                    
 
                 });
-
+                
                 $('#totalAmount').text(totalAmount.toFixed(2) + ' ₺');
             });
         });
     </script>
-}
+}*@
