@@ -17,12 +17,21 @@ public class AccountController : Controller
     [HttpGet]
     public IActionResult Register()
     {
+        if (_signInManager.IsSignedIn(User))
+        {
+            return RedirectToAction("Index", "Menu");
+        }
         return View();
     }
 
     [HttpPost]
     public async Task<IActionResult> Register(RegisterVM model)
     {
+        if (_signInManager.IsSignedIn(User))
+        {
+            return RedirectToAction("Index", "Menu");
+        }
+
         if (ModelState.IsValid)
         {
             var user = new AppUser { UserName = model.Email, Email = model.Email };
@@ -47,13 +56,21 @@ public class AccountController : Controller
     [HttpGet]
     public IActionResult Login()
     {
+        if (_signInManager.IsSignedIn(User))
+        {
+            return RedirectToAction("Index", "Menu");
+        }
         return View();
     }
-
 
     [HttpPost]
     public async Task<IActionResult> Login(LoginVM model)
     {
+        if (_signInManager.IsSignedIn(User))
+        {
+            return RedirectToAction("Index", "Menu");
+        }
+
         if (ModelState.IsValid)
         {
             var result = await _signInManager.PasswordSignInAsync(model.Email, model.Password, model.RememberMe, lockoutOnFailure: false);
