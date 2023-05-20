@@ -94,19 +94,21 @@ namespace YumBurger_Asp_Mvc.UI.Controllers
             return RedirectToAction("Index");
         }
 
-        public async Task<IActionResult> Buy(int id)
+
+        [HttpPost]
+        public async Task<IActionResult> Buy(int Id)
         {
-            var order = await _db.Orders.FirstOrDefaultAsync(o => o.Id == id);
+            var order = await _db.Orders.FirstOrDefaultAsync(o => o.Id == Id);
 
             if (order != null)
             {
                 order.OrderStatus = OrderStatus.OnWay;
                 order.OrderDate = DateTime.Now;
-                order.EstimatedArrivalDate = DateTime.Now.AddMinutes(60);
+                order.EstimatedArrivalDate = DateTime.Now.AddMinutes(45);
                 await _db.SaveChangesAsync();
             }
 
-            return View();
+            return RedirectToAction("Index", "Order");
         }
     }
 }

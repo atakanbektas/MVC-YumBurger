@@ -1,4 +1,4 @@
-﻿@model IEnumerable<Menu>
+﻿@model IEnumerable<Extra>
 
 @{
     ViewData["Title"] = "Index";
@@ -7,15 +7,15 @@
 
 
 <div>
-    <h1 class="text-center text-primary bg-dark">Menus Edit Page</h1>
+    <h1 class="text-center text-success bg-dark">Extras Edit Page</h1>
     <hr />
     <p class="text-end">
-        <a class="btn btn-lg btn-primary text-white" asp-action="Create">Create New Menu</a>
+        <a class="btn btn-lg btn-primary text-white" asp-action="Create">Create New Extra</a>
     </p>
 </div>
 
 
-<form asp-area="Admin" asp-controller="Menu" method="post">
+<form asp-area="Admin" asp-controller="Extra" method="post">
     <div>
         <table class="table text-center table-hover">
             <thead>
@@ -49,7 +49,7 @@
                 {
                     <tr class="align-items-center shadow">
                         <td>
-                            <img class="img-fluid  w-25 h-25" src="~/assest/img/menuPictures/@item.PicturePath" alt="">
+                            <img class="img-fluid  w-25 h-25" src="~/assest/img/ExtrasPictures/@item.PicturePath" alt="">
                         </td>
                         <td>
                             @item.Name

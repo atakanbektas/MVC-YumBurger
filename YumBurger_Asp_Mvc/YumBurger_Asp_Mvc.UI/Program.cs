@@ -23,7 +23,7 @@ builder.Services.ConfigureApplicationCookie(options =>
 
     options.Cookie.Name = "UserCookie";
     options.SlidingExpiration = true;
-    options.ExpireTimeSpan = TimeSpan.FromDays(30);
+    options.ExpireTimeSpan = TimeSpan.FromDays(730);
 });
 
 builder.Services.Configure<IdentityOptions>(options =>

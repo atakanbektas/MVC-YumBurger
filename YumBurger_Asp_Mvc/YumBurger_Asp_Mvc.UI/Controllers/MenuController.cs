@@ -21,8 +21,8 @@ namespace YumBurger_Asp_Mvc.UI.Controllers
         }
         public IActionResult Index()
         {
-            var menus = _db.Menus.ToList();
-            var extras = _db.Extras.ToList();
+            var menus = _db.Menus.Where(m => m.IsSellable == true).ToList();
+            var extras = _db.Extras.Where(m => m.IsSellable == true).ToList();
             MenusExtrasVM menusExtras = new()
             {
                 Extra = extras,

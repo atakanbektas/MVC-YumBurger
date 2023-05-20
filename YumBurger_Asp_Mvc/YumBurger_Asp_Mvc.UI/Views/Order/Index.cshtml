@@ -8,18 +8,20 @@
     if (Model is null) // doesn't have order
     {
         <div class="alert alert-danger">
-            <strong>Your Basket is empty!</strong>                 
+            <strong>Your Basket is empty!</strong>
             <a asp-controller="Menu" class="btn btn-primary ms-3 ">Start Shopping</a>
         </div>
-        
-       
-        
+
+
+
     }
     else // exist order
     {
+
         <h1 class="h1 text-primary text-md-center mt-5">Your Basket</h1>
         <hr />
         <div class="row">
+
 
             <div class="col-md-9">
                 <table class="table text-center ">
@@ -34,15 +36,14 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <form asp-controller="Order" method="post">
 
-                            @{
-                                if(Model.OrdersMenus!=null)
+                        @{
+                            if (Model.OrdersMenus != null)
+                            {
+                                foreach (var item in Model.OrdersMenus)
                                 {
-                                    foreach (var item in Model.OrdersMenus)
-                                    {
                                     <tr class="shadow-lg">
-                                        <td >@item.Menu.Name</td>
+                                        <td>@item.Menu.Name</td>
                                         <td class="w-25 h-25"><img class="w-25 h-25 shadow-lg" src="~/assest/img/menuPictures/@item.Menu.PicturePath" alt="logo" /></td>
                                         <td>@item.Quantity</td>
                                         <td>@item.Menu.Price ₺</td>
@@ -53,45 +54,49 @@
                                             </a>
                                         </td>
                                     </tr>
-                                    }
                                 }
-                                if (Model.OrdersExtras != null)
+                            }
+                            if (Model.OrdersExtras != null)
+                            {
+                                foreach (var item in Model.OrdersExtras)
                                 {
-                                    foreach (var item in Model.OrdersExtras)
-                                    {
                                     <tr class="shadow-lg">
                                         <td>@item.Extra.Name</td>
                                         <td class="w-25 h-25"><img class="w-25 h-25" src="~/assest/img/ExtrasPictures/@item.Extra.PicturePath" alt="logo" /></td>
                                         <td>@item.Quantity</td>
                                         <td>@item.Extra.Price ₺</td>
                                         <td>@(item.Extra.Price * item.Quantity) ₺</td>
+
                                         <td>
+
                                             <a asp-action="DeleteExtra" asp-route-id="@item.ExtraId">
                                                 <i class="fa-solid fa-rectangle-xmark" style="color: #ff6600;"></i>
                                             </a>
-                                        </td>
-                                    </tr>
-                                    }
-                                }                               
-                            }                          
-                            
+                                        </td>                                       
 
-                        </form>
+                                    </tr>
+                                }
+                            }
+                        }
+
                     </tbody>
                 </table>
             </div>
-            <div class="col-md-3">
-                <div class="table row" style="position:sticky; top:300px;">
-                    <a class="btn btn-primary mb-3">Buy Now</a>
-                    <a asp-controller="Menu" asp-action="Index" class="btn btn-primary mb-3">Continue Shopping</a>
-                    <a asp-controller="Order" asp-action="ClearAll" class="btn btn-danger">Clear All</a>
-                    <div class="shadow mt-3">
-                    <h3 class="h2 text-primary ">Total Amount : <i class="text-dark h4">@Model.TotalPrice  ₺</i> </h3>
+            <form asp-controller="Order" method="post">
+                <input type="hidden" asp-for="Id" />
+                <div class="col-md-3">
+                    <div class="table row" style="position:sticky; top:300px;">
+                        <button type="submit" asp-controller="Order" asp-action="Buy" class="btn btn-primary mb-3">Buy Now</button>
+                        <a asp-controller="Menu" asp-action="Index" class="btn btn-primary mb-3">Continue Shopping</a>
+                        <a asp-controller="Order" asp-action="ClearAll" class="btn btn-danger">Clear All</a>
+                        <div class="shadow mt-3">
+                            <h3 class="h2 text-primary ">Total Amount : <i class="text-dark h4">@Model.TotalPrice  ₺</i> </h3>
+
+                        </div>
 
                     </div>
                 </div>
-            </div>
-
+            </form>
 
 
 
@@ -135,7 +140,7 @@
                         </tr>
                     </thead>
                     <tbody>
-                        
+
                             @{
                                 if (Model.OrdersMenus != null)
                                 {
@@ -202,7 +207,7 @@
                                     }
                                 }
                             }
-                        
+
                     </tbody>
                 </table>
             </div>
@@ -257,10 +262,10 @@
                 $('.input-number').each(function () {
                     var itemQuantity = parseInt($(this).val());
                     var itemPrice = parseFloat($(this).closest('tr').find('td:nth-child(4)').text().replace('₺', ''));
-                    totalAmount += itemQuantity * itemPrice;                    
+                    totalAmount += itemQuantity * itemPrice;
 
                 });
-                
+
                 $('#totalAmount').text(totalAmount.toFixed(2) + ' ₺');
             });
         });

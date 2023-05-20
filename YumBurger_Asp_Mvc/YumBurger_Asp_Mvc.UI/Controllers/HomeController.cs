@@ -2,6 +2,7 @@
 using System.Diagnostics;
 using YumBurger_Asp_Mvc.UI.Data;
 using YumBurger_Asp_Mvc.UI.Models;
+using YumBurger_Asp_Mvc.UI.Models.ViewModels;
 
 namespace YumBurger_Asp_Mvc.UI.Controllers
 {
@@ -17,7 +18,19 @@ namespace YumBurger_Asp_Mvc.UI.Controllers
 
         public IActionResult Index()
         {
-            return View();
+            var menus = _context.Menus.Where(m => m.IsSellable == true).ToList();
+            var extras = _context.Extras.Where(m => m.IsSellable == true).ToList();
+
+
+            MenusExtrasVM menusExtras = new();
+
+            for (int i = 0; i < 6; i++)
+            {
+                menusExtras.Menus.Add(menus[i]);
+                menusExtras.Extra.Add(extras[i]);
+            }
+
+            return View(menusExtras);
         }
 
 

@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using YumBurger_Asp_Mvc.UI.Data;
 
@@ -11,9 +12,10 @@ using YumBurger_Asp_Mvc.UI.Data;
 namespace MVC_Hamburger.Data.Migrations
 {
     [DbContext(typeof(YumBurgerContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20230519113141_v-1.0.4")]
+    partial class v104
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -239,7 +241,7 @@ namespace MVC_Hamburger.Data.Migrations
                         .HasMaxLength(500)
                         .HasColumnType("nvarchar(500)");
 
-                    b.Property<bool>("IsSellable")
+                    b.Property<bool?>("IsSellable")
                         .HasColumnType("bit");
 
                     b.Property<string>("Name")

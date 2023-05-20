@@ -16,7 +16,6 @@ namespace YumBurger_Asp_Mvc.UI.Areas.Admin.Controllers
         {
             _context = context;
             _userManager = userManager;
-            ViewBag.Email = GetUserEmailAsync();
         }
 
         public IActionResult Index()
@@ -24,10 +23,5 @@ namespace YumBurger_Asp_Mvc.UI.Areas.Admin.Controllers
             return View();
         }
 
-        private async Task<string> GetUserEmailAsync()
-        {
-            var user = await _userManager.GetUserAsync(User);
-            return user.Email;
-        }
     }
 }

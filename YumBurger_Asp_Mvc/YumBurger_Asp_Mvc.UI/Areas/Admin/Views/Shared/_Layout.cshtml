@@ -61,7 +61,7 @@
                     <div class="nav-item dropdown">
                         <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown"><i class="fa fa-laptop me-2"></i>Edit</a>
                         <div class="dropdown-menu bg-transparent border-0">
-                            <a href="button.html" class="dropdown-item">Menu</a>
+                            <a asp-area="Admin" asp-controller="Menu" asp-action="Index" class="dropdown-item">Menu</a>
                             <a href="typography.html" class="dropdown-item">Extra</a>
                         </div>
                     </div>
@@ -170,7 +170,7 @@
             </nav>
             <!-- Navbar End -->
             <!-- Blank Start -->
-            <main role="main" class="p-5  shadow-lg vh-100 bg-light rounded">
+            <main role="main" class="p-5 bg-light rounded">
                 @RenderBody()
             </main>
             @*        
@@ -184,7 +184,7 @@
             </div>*@
             <!-- Blank End -->
             <!-- Footer Start -->
-            <div class="container-fluid pt-4 px-4">
+           @* <div class="container-fluid pt-4 px-4">
                 <div class="bg-light rounded-top p-4">
                     <div class="row">
                         <div class="col-12 col-sm-6 text-center text-sm-start">
@@ -196,7 +196,7 @@
                         </div>
                     </div>
                 </div>
-            </div>
+            </div>*@
             <!-- Footer End -->
         </div>
         <!-- Content End -->

@@ -5,16 +5,15 @@ using Microsoft.EntityFrameworkCore;
 using YumBurger_Asp_Mvc.UI.Data;
 using YumBurger_Asp_Mvc.UI.Models;
 
-namespace YumBurger_Asp_Mvc.UI.Areas.Admin.Views.Home
+namespace YumBurger_Asp_Mvc.UI.Areas.Admin.Controllers
 {
     [Area("Admin")]
     [Authorize(Roles = "admin")]
-    public class MenuController : Controller
+    public class ExtraController : Controller
     {
-
         private readonly YumBurgerContext _context;
         private readonly UserManager<AppUser> _userManager;
-        public MenuController(YumBurgerContext context, UserManager<AppUser> userManager)
+        public ExtraController(YumBurgerContext context, UserManager<AppUser> userManager)
         {
             _context = context;
             _userManager = userManager;
@@ -22,11 +21,11 @@ namespace YumBurger_Asp_Mvc.UI.Areas.Admin.Views.Home
 
 
 
-        // GET: MenuController
+        // GET: ExtraController
         public async Task<ActionResult> Index()
         {
-            var menus = await _context.Menus.ToListAsync();
-            return View(menus);
+            var extras = await _context.Extras.ToListAsync();
+            return View(extras);
         }
 
         // GET: MenuController/Details/5
@@ -43,12 +42,12 @@ namespace YumBurger_Asp_Mvc.UI.Areas.Admin.Views.Home
 
         // POST: MenuController/Create
         [HttpPost]
-        public async Task<IActionResult> Create(Menu menu, IFormFile PicturePath, [FromServices] IWebHostEnvironment env)
+        public async Task<IActionResult> Create(Extra extra, IFormFile PicturePath, [FromServices] IWebHostEnvironment env)
         {
             if (PicturePath != null && PicturePath.Length > 0)
             {
                 var dosyaAdi = Path.GetFileName(PicturePath.FileName);
-                var picturesFolder = Path.Combine(env.WebRootPath, "assest", "img", "menuPictures");
+                var picturesFolder = Path.Combine(env.WebRootPath, "assest", "img", "ExtrasPictures");
                 var dosyaYolu = Path.Combine(picturesFolder, dosyaAdi);
 
                 if (!Directory.Exists(picturesFolder))
@@ -61,19 +60,19 @@ namespace YumBurger_Asp_Mvc.UI.Areas.Admin.Views.Home
                     await PicturePath.CopyToAsync(stream);
                 }
 
-                menu.PicturePath = dosyaAdi;
+                extra.PicturePath = dosyaAdi;
             }
 
-            if (menu is not null)
+            if (extra is not null)
             {
-                Menu createMenu = new()
+                Extra createExtra = new()
                 {
-                    Name = menu.Name,
-                    PicturePath = menu.PicturePath,
-                    Price = menu.Price,
-                    Description = menu.Description,
+                    Name = extra.Name,
+                    PicturePath = extra.PicturePath,
+                    Price = extra.Price,
+                    Description = extra.Description,
                 };
-                await _context.Menus.AddAsync(createMenu);
+                await _context.Extras.AddAsync(createExtra);
                 await _context.SaveChangesAsync();
             }
             return RedirectToAction("Index");
@@ -84,29 +83,28 @@ namespace YumBurger_Asp_Mvc.UI.Areas.Admin.Views.Home
         // GET: MenuController/Edit/5
         public async Task<ActionResult> Edit(int id)
         {
-            var editMenu = await _context.Menus.FirstOrDefaultAsync(m => m.Id == id);
-            if (editMenu is not null)
+            var editExtra = await _context.Extras.FirstOrDefaultAsync(m => m.Id == id);
+            if (editExtra is not null)
             {
-                return View(editMenu);
+                return View(editExtra);
             }
-            return RedirectToAction("Index"); // if edit menu is null..
+            return RedirectToAction("Index"); // if edit extra is null..
         }
 
         // POST: MenuController/Edit/5
         [HttpPost]
         public async Task<ActionResult> Edit(int id, IFormCollection collection, [FromServices] IWebHostEnvironment env)
         {
-
             string picturePath;
             IFormFile picture;
 
 
-            var editMenu = await _context.Menus.FirstAsync(m => m.Id == id);
+            var editExtra = await _context.Extras.FirstAsync(m => m.Id == id);
 
-            editMenu.Name = collection["Name"];
-            editMenu.Price = Convert.ToDecimal(collection["Price"]);
-            editMenu.Description = collection["Description"];
-            editMenu.IsSellable = collection["IsSellable"] == "false" ? false : true; // temprory solition
+            editExtra.Name = collection["Name"];
+            editExtra.Price = Convert.ToDecimal(collection["Price"]);
+            editExtra.Description = collection["Description"];
+            editExtra.IsSellable = collection["IsSellable"] == "false" ? false : true; // temprory solition
 
 
             if (collection.Files.Count > 0)
@@ -115,8 +113,8 @@ namespace YumBurger_Asp_Mvc.UI.Areas.Admin.Views.Home
                 picturePath = picture.FileName;
                 if (picturePath is not null && picturePath.Length > 0)
                 {
-                    editMenu.PicturePath = picturePath;
-                    var picturesFolder = Path.Combine(env.WebRootPath, "assest", "img", "menuPictures");
+                    editExtra.PicturePath = picturePath;
+                    var picturesFolder = Path.Combine(env.WebRootPath, "assest", "img", "ExtrasPictures");
                     var dosyaYolu = Path.Combine(picturesFolder, picturePath);
 
                     if (!Directory.Exists(picturesFolder))
@@ -138,14 +136,14 @@ namespace YumBurger_Asp_Mvc.UI.Areas.Admin.Views.Home
         // POST: MenuController/Delete/5
         public async Task<ActionResult> Delete(int id)
         {
-            var changeSellableMenu = await _context.Menus.FirstOrDefaultAsync(m => m.Id == id);
+            var changeSellableExtra = await _context.Extras.FirstOrDefaultAsync(m => m.Id == id);
 
-            if (changeSellableMenu is not null)
+            if (changeSellableExtra is not null)
             {
-                changeSellableMenu.IsSellable = changeSellableMenu.IsSellable ? false : true;
+                changeSellableExtra.IsSellable = changeSellableExtra.IsSellable ? false : true;
                 await _context.SaveChangesAsync();
             }
-            return RedirectToAction("Index", "Menu");
+            return RedirectToAction("Index", "Extra");
         }
     }
 }

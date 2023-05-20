@@ -1,4 +1,6 @@
-﻿@{
+﻿@model MenusExtrasVM
+
+@{
     ViewData["Title"] = "Home Page";
 }
 
@@ -15,11 +17,11 @@
 
                     <button type="button" class="btn-play" data-bs-toggle="modal"
                             data-src="https://www.youtube.com/embed/Ip0tlyXBmE0" data-bs-target="#videoModal">
-                            
+
 
                         <span></span>
                     </button>
-                    
+
                     <h5 class="font-weight-normal text-white m-0 ms-4 d-none d-sm-block">Who are we ?</h5>
                 </div>
             </div>
@@ -51,31 +53,35 @@
     <div class="container">
         <div class="section-title position-relative text-center mx-auto mb-5 pb-3" style="max-width: 600px;">
             <h2 class="text-primary font-secondary">About Us</h2>
-            <h1 class="display-4 text-uppercase">Welcome To CakeZone</h1>
+            <h1 class="display-4 text-uppercase">Welcome To YUMBURGER</h1>
         </div>
         <div class="row gx-5">
             <div class="col-lg-5 mb-5 mb-lg-0" style="min-height: 400px;">
                 <div class="position-relative h-100">
-                    <img class="position-absolute w-100 h-100" src="~/assest/img/about.jpg" style="object-fit: cover;">
+                    <img class="position-absolute w-100 h-100" src="~/assest/img/YUMBURGER.png" style="object-fit: cover;">
                 </div>
             </div>
             <div class="col-lg-6 pb-5">
-                <h4 class="mb-4">Tempor erat elitr rebum clita. Diam dolor diam ipsum erat lorem sed stet labore lorem sit clita duo</h4>
-                <p class="mb-5">Tempor erat elitr at rebum at at clita. Diam dolor diam ipsum et tempor sit. Clita erat ipsum et lorem et sit, sed stet no labore lorem sit. Sanctus clita duo justo et tempor eirmod magna dolore erat amet magna</p>
+                <h4 class="mb-4">
+                    Indulge in a unique burger experience with delicious burgers, a variety of options, and healthy ingredients at our special burger joint.
+                </h4>
+                <p class="mb-5">Savor the finest burgers in town at our burger joint. Made with premium ingredients for an unforgettable taste. Immerse yourself in a culinary journey of flavor and satisfaction. Experience burger perfection like never before.</p>
                 <div class="row g-5">
                     <div class="col-sm-6">
                         <div class="d-flex align-items-center justify-content-center bg-primary border-inner mb-4" style="width: 90px; height: 90px;">
                             <i class="fa fa-heartbeat fa-2x text-white"></i>
                         </div>
-                        <h4 class="text-uppercase">100% Healthy</h4>
-                        <p class="mb-0">Labore justo vero ipsum sit clita erat lorem magna clita nonumy dolor magna dolor vero</p>
+                        <h4 class="text-uppercase">100% Delicious</h4>
+                        <p class="mb-0">
+                            "Experience the mouthwatering deliciousness of our delectable burgers today!"
+                        </p>
                     </div>
                     <div class="col-sm-6">
                         <div class="d-flex align-items-center justify-content-center bg-primary border-inner mb-4" style="width: 90px; height: 90px;">
                             <i class="fa fa-award fa-2x text-white"></i>
                         </div>
                         <h4 class="text-uppercase">Award Winning</h4>
-                        <p class="mb-0">Labore justo vero ipsum sit clita erat lorem magna clita nonumy dolor magna dolor vero</p>
+                        <p class="mb-0">Our exceptional burgers have garnered prestigious awards, solidifying our position as industry leaders</p>
                     </div>
                 </div>
             </div>
@@ -94,7 +100,7 @@
                     </div>
                     <div class="ps-4">
                         <h6 class="text-primary text-uppercase">Our Experience</h6>
-                        <h1 class="display-5 text-white mb-0" data-toggle="counter-up">30</h1><h4 class="text-white">Year</h4>
+                        <h1 class="display-5 text-white mb-0" data-toggle="counter-up">@((DateTime.Now.Year - 1996).ToString())</h1><h4 class="text-white">Year</h4>
                     </div>
                 </div>
             </div>
@@ -104,8 +110,8 @@
                         <i class="fa fa-users text-white"></i>
                     </div>
                     <div class="ps-4">
-                        <h6 class="text-primary text-uppercase">Cake Specialist</h6>
-                        <h1 class="display-5 text-white mb-0" data-toggle="counter-up">12345</h1>
+                        <h6 class="text-primary text-uppercase">Burger Specialist</h6>
+                        <h1 class="display-5 text-white mb-0" data-toggle="counter-up">57</h1>
                     </div>
                 </div>
             </div>
@@ -116,7 +122,7 @@
                     </div>
                     <div class="ps-4">
                         <h6 class="text-primary text-uppercase">Complete Project</h6>
-                        <h1 class="display-5 text-white mb-0" data-toggle="counter-up">12345</h1>
+                        <h1 class="display-5 text-white mb-0" data-toggle="counter-up">1023451</h1>
                     </div>
                 </div>
             </div>
@@ -127,7 +133,7 @@
                     </div>
                     <div class="ps-4">
                         <h6 class="text-primary text-uppercase">Happy Clients</h6>
-                        <h1 class="display-5 text-white mb-0" data-toggle="counter-up">12345</h1>
+                        <h1 class="display-5 text-white mb-0" text-center>∞</h1>
                     </div>
                 </div>
             </div>
@@ -139,250 +145,73 @@
 <div class="container-fluid about py-5">
     <div class="container">
         <div class="section-title position-relative text-center mx-auto mb-5 pb-3" style="max-width: 600px;">
-            <h2 class="text-primary font-secondary">Menu & Pricing</h2>
-            <h1 class="display-4 text-uppercase">Explore Our Cakes</h1>
+            <h2 class="text-primary font-secondary">Menu & Extras</h2>
+            <h1 class="display-4 text-uppercase">Explore Our Burgers</h1>
         </div>
         <div class="tab-class text-center">
             <ul class="nav nav-pills d-inline-flex justify-content-center bg-dark text-uppercase border-inner p-4 mb-5">
                 <li class="nav-item">
-                    <a class="nav-link text-white active" data-bs-toggle="pill" href="#tab-1">Birthday</a>
+                    <a class="nav-link text-white active" data-bs-toggle="pill" href="#tab-1">Menus</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link text-white" data-bs-toggle="pill" href="#tab-2">Wedding</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link text-white" data-bs-toggle="pill" href="#tab-3">Custom</a>
+                    <a class="nav-link text-white" data-bs-toggle="pill" href="#tab-2">Extras</a>
                 </li>
             </ul>
             <div class="tab-content">
                 <div id="tab-1" class="tab-pane fade show p-0 active">
                     <div class="row g-3">
-                        <div class="col-lg-6">
-                            <div class="d-flex h-100">
-                                <div class="flex-shrink-0">
-                                    <img class="img-fluid" src="~/assest/img/cake-1.jpg" alt="" style="width: 150px; height: 85px;">
-                                    <h4 class="bg-dark text-primary p-2 m-0">$99.00</h4>
-                                </div>
-                                <div class="d-flex flex-column justify-content-center text-start bg-secondary border-inner px-4">
-                                    <h5 class="text-uppercase">Birthday Cake</h5>
-                                    <span>Ipsum ipsum clita erat amet dolor sit justo sea eirmod diam stet sit justo</span>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-lg-6">
-                            <div class="d-flex h-100">
-                                <div class="flex-shrink-0">
-                                    <img class="img-fluid" src="~/assest/img/cake-1.jpg" alt="" style="width: 150px; height: 85px;">
-                                    <h4 class="bg-dark text-primary p-2 m-0">$99.00</h4>
-                                </div>
-                                <div class="d-flex flex-column justify-content-center text-start bg-secondary border-inner px-4">
-                                    <h5 class="text-uppercase">Birthday Cake</h5>
-                                    <span>Ipsum ipsum clita erat amet dolor sit justo sea eirmod diam stet sit justo</span>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-lg-6">
-                            <div class="d-flex h-100">
-                                <div class="flex-shrink-0">
-                                    <img class="img-fluid" src="~/assest/img/cake-1.jpg" alt="" style="width: 150px; height: 85px;">
-                                    <h4 class="bg-dark text-primary p-2 m-0">$99.00</h4>
-                                </div>
-                                <div class="d-flex flex-column justify-content-center text-start bg-secondary border-inner px-4">
-                                    <h5 class="text-uppercase">Birthday Cake</h5>
-                                    <span>Ipsum ipsum clita erat amet dolor sit justo sea eirmod diam stet sit justo</span>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-lg-6">
-                            <div class="d-flex h-100">
-                                <div class="flex-shrink-0">
-                                    <img class="img-fluid" src="~/assest/img/cake-1.jpg" alt="" style="width: 150px; height: 85px;">
-                                    <h4 class="bg-dark text-primary p-2 m-0">$99.00</h4>
-                                </div>
-                                <div class="d-flex flex-column justify-content-center text-start bg-secondary border-inner px-4">
-                                    <h5 class="text-uppercase">Birthday Cake</h5>
-                                    <span>Ipsum ipsum clita erat amet dolor sit justo sea eirmod diam stet sit justo</span>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-lg-6">
-                            <div class="d-flex h-100">
-                                <div class="flex-shrink-0">
-                                    <img class="img-fluid" src="~/assest/img/cake-1.jpg" alt="" style="width: 150px; height: 85px;">
-                                    <h4 class="bg-dark text-primary p-2 m-0">$99.00</h4>
-                                </div>
-                                <div class="d-flex flex-column justify-content-center text-start bg-secondary border-inner px-4">
-                                    <h5 class="text-uppercase">Birthday Cake</h5>
-                                    <span>Ipsum ipsum clita erat amet dolor sit justo sea eirmod diam stet sit justo</span>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-lg-6">
-                            <div class="d-flex h-100">
-                                <div class="flex-shrink-0">
-                                    <img class="img-fluid" src="~/assest/img/cake-1.jpg" alt="" style="width: 150px; height: 85px;">
-                                    <h4 class="bg-dark text-primary p-2 m-0">$99.00</h4>
-                                </div>
-                                <div class="d-flex flex-column justify-content-center text-start bg-secondary border-inner px-4">
-                                    <h5 class="text-uppercase">Birthday Cake</h5>
-                                    <span>Ipsum ipsum clita erat amet dolor sit justo sea eirmod diam stet sit justo</span>
-                                </div>
-                            </div>
-                        </div>
+
+                        @{
+                            foreach (var item in Model.Menus)
+                            {
+                                <a class="col-lg-6" href="/menu/index">
+                                    <div>
+                                        <div class="d-flex h-100">
+                                            <div class="flex-shrink-0">
+                                                <img class="img-fluid" src="~/assest/img/menuPictures/@item.PicturePath" alt="" style="width: 150px; height: 85px;">
+                                                <h4 class="bg-dark text-primary p-2 m-0">₺@item.Price</h4>
+                                            </div>
+                                            <div class="d-flex flex-column justify-content-center text-start bg-secondary border-inner px-4">
+                                                <h5 class="text-uppercase">@item.Name</h5>
+                                                <span>@item.Description @item.Description @item.Description @item.Description</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </a>
+
+                            }
+                        }
+
+
+
+
                     </div>
                 </div>
                 <div id="tab-2" class="tab-pane fade show p-0">
                     <div class="row g-3">
-                        <div class="col-lg-6">
-                            <div class="d-flex h-100">
-                                <div class="flex-shrink-0">
-                                    <img class="img-fluid" src="~/assest/img/cake-2.jpg" alt="" style="width: 150px; height: 85px;">
-                                    <h4 class="bg-dark text-primary p-2 m-0">$99.00</h4>
-                                </div>
-                                <div class="d-flex flex-column justify-content-center text-start bg-secondary border-inner px-4">
-                                    <h5 class="text-uppercase">Wedding Cake</h5>
-                                    <span>Ipsum ipsum clita erat amet dolor sit justo sea eirmod diam stet sit justo</span>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-lg-6">
-                            <div class="d-flex h-100">
-                                <div class="flex-shrink-0">
-                                    <img class="img-fluid" src="~/assest/img/cake-2.jpg" alt="" style="width: 150px; height: 85px;">
-                                    <h4 class="bg-dark text-primary p-2 m-0">$99.00</h4>
-                                </div>
-                                <div class="d-flex flex-column justify-content-center text-start bg-secondary border-inner px-4">
-                                    <h5 class="text-uppercase">Wedding Cake</h5>
-                                    <span>Ipsum ipsum clita erat amet dolor sit justo sea eirmod diam stet sit justo</span>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-lg-6">
-                            <div class="d-flex h-100">
-                                <div class="flex-shrink-0">
-                                    <img class="img-fluid" src="~/assest/img/cake-2.jpg" alt="" style="width: 150px; height: 85px;">
-                                    <h4 class="bg-dark text-primary p-2 m-0">$99.00</h4>
-                                </div>
-                                <div class="d-flex flex-column justify-content-center text-start bg-secondary border-inner px-4">
-                                    <h5 class="text-uppercase">Wedding Cake</h5>
-                                    <span>Ipsum ipsum clita erat amet dolor sit justo sea eirmod diam stet sit justo</span>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-lg-6">
-                            <div class="d-flex h-100">
-                                <div class="flex-shrink-0">
-                                    <img class="img-fluid" src="~/assest/img/cake-2.jpg" alt="" style="width: 150px; height: 85px;">
-                                    <h4 class="bg-dark text-primary p-2 m-0">$99.00</h4>
-                                </div>
-                                <div class="d-flex flex-column justify-content-center text-start bg-secondary border-inner px-4">
-                                    <h5 class="text-uppercase">Wedding Cake</h5>
-                                    <span>Ipsum ipsum clita erat amet dolor sit justo sea eirmod diam stet sit justo</span>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-lg-6">
-                            <div class="d-flex h-100">
-                                <div class="flex-shrink-0">
-                                    <img class="img-fluid" src="~/assest/img/cake-2.jpg" alt="" style="width: 150px; height: 85px;">
-                                    <h4 class="bg-dark text-primary p-2 m-0">$99.00</h4>
-                                </div>
-                                <div class="d-flex flex-column justify-content-center text-start bg-secondary border-inner px-4">
-                                    <h5 class="text-uppercase">Wedding Cake</h5>
-                                    <span>Ipsum ipsum clita erat amet dolor sit justo sea eirmod diam stet sit justo</span>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-lg-6">
-                            <div class="d-flex h-100">
-                                <div class="flex-shrink-0">
-                                    <img class="img-fluid" src="~/assest/img/cake-2.jpg" alt="" style="width: 150px; height: 85px;">
-                                    <h4 class="bg-dark text-primary p-2 m-0">$99.00</h4>
-                                </div>
-                                <div class="d-flex flex-column justify-content-center text-start bg-secondary border-inner px-4">
-                                    <h5 class="text-uppercase">Wedding Cake</h5>
-                                    <span>Ipsum ipsum clita erat amet dolor sit justo sea eirmod diam stet sit justo</span>
-                                </div>
-                            </div>
-                        </div>
+
+                        @{
+                            foreach (var item in Model.Extra)
+                            {
+                                <a class="col-lg-6" href="/menu/index">
+                                    <div>
+                                        <div class="d-flex h-100">
+                                            <div class="flex-shrink-0">
+                                                <img class="img-fluid" src="~/assest/img/ExtrasPictures/@item.PicturePath" alt="" style="width: 150px; height: 85px;">
+                                                <h4 class="bg-dark text-primary p-2 m-0">₺@item.Price</h4>
+                                            </div>
+                                            <div class="d-flex flex-column justify-content-center text-start bg-secondary border-inner px-4">
+                                                <h5 class="text-uppercase">@item.Name</h5>
+                                                <span>@item.Description @item.Description @item.Description @item.Description</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </a>
+                            }
+                        }
                     </div>
                 </div>
-                <div id="tab-3" class="tab-pane fade show p-0">
-                    <div class="row g-3">
-                        <div class="col-lg-6">
-                            <div class="d-flex h-100">
-                                <div class="flex-shrink-0">
-                                    <img class="img-fluid" src="~/assest/img/cake-3.jpg" alt="" style="width: 150px; height: 85px;">
-                                    <h4 class="bg-dark text-primary p-2 m-0">$99.00</h4>
-                                </div>
-                                <div class="d-flex flex-column justify-content-center text-start bg-secondary border-inner px-4">
-                                    <h5 class="text-uppercase">Custom Cake</h5>
-                                    <span>Ipsum ipsum clita erat amet dolor sit justo sea eirmod diam stet sit justo</span>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-lg-6">
-                            <div class="d-flex h-100">
-                                <div class="flex-shrink-0">
-                                    <img class="img-fluid" src="~/assest/img/cake-3.jpg" alt="" style="width: 150px; height: 85px;">
-                                    <h4 class="bg-dark text-primary p-2 m-0">$99.00</h4>
-                                </div>
-                                <div class="d-flex flex-column justify-content-center text-start bg-secondary border-inner px-4">
-                                    <h5 class="text-uppercase">Custom Cake</h5>
-                                    <span>Ipsum ipsum clita erat amet dolor sit justo sea eirmod diam stet sit justo</span>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-lg-6">
-                            <div class="d-flex h-100">
-                                <div class="flex-shrink-0">
-                                    <img class="img-fluid" src="~/assest/img/cake-3.jpg" alt="" style="width: 150px; height: 85px;">
-                                    <h4 class="bg-dark text-primary p-2 m-0">$99.00</h4>
-                                </div>
-                                <div class="d-flex flex-column justify-content-center text-start bg-secondary border-inner px-4">
-                                    <h5 class="text-uppercase">Custom Cake</h5>
-                                    <span>Ipsum ipsum clita erat amet dolor sit justo sea eirmod diam stet sit justo</span>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-lg-6">
-                            <div class="d-flex h-100">
-                                <div class="flex-shrink-0">
-                                    <img class="img-fluid" src="~/assest/img/cake-3.jpg" alt="" style="width: 150px; height: 85px;">
-                                    <h4 class="bg-dark text-primary p-2 m-0">$99.00</h4>
-                                </div>
-                                <div class="d-flex flex-column justify-content-center text-start bg-secondary border-inner px-4">
-                                    <h5 class="text-uppercase">Custom Cake</h5>
-                                    <span>Ipsum ipsum clita erat amet dolor sit justo sea eirmod diam stet sit justo</span>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-lg-6">
-                            <div class="d-flex h-100">
-                                <div class="flex-shrink-0">
-                                    <img class="img-fluid" src="~/assest/img/cake-3.jpg" alt="" style="width: 150px; height: 85px;">
-                                    <h4 class="bg-dark text-primary p-2 m-0">$99.00</h4>
-                                </div>
-                                <div class="d-flex flex-column justify-content-center text-start bg-secondary border-inner px-4">
-                                    <h5 class="text-uppercase">Custom Cake</h5>
-                                    <span>Ipsum ipsum clita erat amet dolor sit justo sea eirmod diam stet sit justo</span>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-lg-6">
-                            <div class="d-flex h-100">
-                                <div class="flex-shrink-0">
-                                    <img class="img-fluid" src="~/assest/img/cake-3.jpg" alt="" style="width: 150px; height: 85px;">
-                                    <h4 class="bg-dark text-primary p-2 m-0">$99.00</h4>
-                                </div>
-                                <div class="d-flex flex-column justify-content-center text-start bg-secondary border-inner px-4">
-                                    <h5 class="text-uppercase">Custom Cake</h5>
-                                    <span>Ipsum ipsum clita erat amet dolor sit justo sea eirmod diam stet sit justo</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+
             </div>
         </div>
     </div>
@@ -394,28 +223,28 @@
         <div class="row g-5">
             <div class="col-lg-4 col-md-6">
                 <div class="bg-primary border-inner text-center text-white p-5">
-                    <h4 class="text-uppercase mb-3">Birthday Cake</h4>
+                    <h4 class="text-uppercase mb-3">Our Burgers</h4>
                     <p>Ipsum ipsum clita erat amet dolor sit justo sea eirmod diam stet sit justo amet tempor amet kasd lorem dolor ipsum</p>
-                    <a class="text-uppercase text-dark" href="">Read More <i class="bi bi-arrow-right"></i></a>
+                    <a class="text-uppercase text-dark" href="/menu">Read More <i class="bi bi-arrow-right"></i></a>
                 </div>
             </div>
             <div class="col-lg-4 col-md-6">
                 <div class="bg-primary border-inner text-center text-white p-5">
-                    <h4 class="text-uppercase mb-3">Wedding Cake</h4>
+                    <h4 class="text-uppercase mb-3">Our Extras</h4>
                     <p>Ipsum ipsum clita erat amet dolor sit justo sea eirmod diam stet sit justo amet tempor amet kasd lorem dolor ipsum</p>
-                    <a class="text-uppercase text-dark" href="">Read More <i class="bi bi-arrow-right"></i></a>
+                    <a class="text-uppercase text-dark" href="/menu">Read More <i class="bi bi-arrow-right"></i></a>
                 </div>
             </div>
             <div class="col-lg-4 col-md-6">
                 <div class="bg-primary border-inner text-center text-white p-5">
-                    <h4 class="text-uppercase mb-3">Custom Cake</h4>
+                    <h4 class="text-uppercase mb-3">About Us</h4>
                     <p>Ipsum ipsum clita erat amet dolor sit justo sea eirmod diam stet sit justo amet tempor amet kasd lorem dolor ipsum</p>
-                    <a class="text-uppercase text-dark" href="">Read More <i class="bi bi-arrow-right"></i></a>
+                    <a class="text-uppercase text-dark" href="/about">Read More <i class="bi bi-arrow-right"></i></a>
                 </div>
             </div>
             <div class="col-lg-12 col-md-6 text-center">
                 <h1 class="text-uppercase text-light mb-4">30% Discount For This Summer</h1>
-                <a href="" class="btn btn-primary border-inner py-3 px-5">Order Now</a>
+                <a href="/menu" class="btn btn-primary border-inner py-3 px-5">Order Now</a>
             </div>
         </div>
     </div>
@@ -432,7 +261,7 @@
             <div class="col-lg-4 col-md-6">
                 <div class="team-item">
                     <div class="position-relative overflow-hidden">
-                        <img class="img-fluid w-100" src="~/assest/img/team-1.jpg" alt="">
+                        <img class="img-fluid w-100" src="~/assest/img/gokcehan.jpeg" alt="">
                         <div class="team-overlay w-100 h-100 position-absolute top-50 start-50 translate-middle d-flex align-items-center justify-content-center">
                             <div class="d-flex align-items-center justify-content-start">
                                 <a class="btn btn-lg btn-primary btn-lg-square border-inner rounded-0 mx-1" href="#"><i class="fab fa-twitter fw-normal"></i></a>
@@ -442,15 +271,15 @@
                         </div>
                     </div>
                     <div class="bg-dark border-inner text-center p-4">
-                        <h4 class="text-uppercase text-primary">Full Name</h4>
-                        <p class="text-white m-0">Designation</p>
+                        <h4 class="text-uppercase text-primary">Chef Ethan</h4>
+                        <p class="text-white m-0">YumBurger</p>
                     </div>
                 </div>
             </div>
             <div class="col-lg-4 col-md-6">
                 <div class="team-item">
                     <div class="position-relative overflow-hidden">
-                        <img class="img-fluid w-100" src="~/assest/img/team-2.jpg" alt="">
+                        <img class="img-fluid w-100" src="~/assest/img/mustafa.jpeg" alt="">
                         <div class="team-overlay w-100 h-100 position-absolute top-50 start-50 translate-middle d-flex align-items-center justify-content-center">
                             <div class="d-flex align-items-center justify-content-start">
                                 <a class="btn btn-lg btn-primary btn-lg-square border-inner rounded-0 mx-1" href="#"><i class="fab fa-twitter fw-normal"></i></a>
@@ -460,15 +289,15 @@
                         </div>
                     </div>
                     <div class="bg-dark border-inner text-center p-4">
-                        <h4 class="text-uppercase text-primary">Full Name</h4>
-                        <p class="text-white m-0">Designation</p>
+                        <h4 class="text-uppercase text-primary">Chef Alex</h4>
+                        <p class="text-white m-0">YumBurger</p>
                     </div>
                 </div>
             </div>
             <div class="col-lg-4 col-md-6">
                 <div class="team-item">
                     <div class="position-relative overflow-hidden">
-                        <img class="img-fluid w-100" src="~/assest/img/team-3.jpg" alt="">
+                        <img class="img-fluid w-100" src="~/assest/img/ozan.jpeg" alt="">
                         <div class="team-overlay w-100 h-100 position-absolute top-50 start-50 translate-middle d-flex align-items-center justify-content-center">
                             <div class="d-flex align-items-center justify-content-start">
                                 <a class="btn btn-lg btn-primary btn-lg-square border-inner rounded-0 mx-1" href="#"><i class="fab fa-twitter fw-normal"></i></a>
@@ -478,8 +307,8 @@
                         </div>
                     </div>
                     <div class="bg-dark border-inner text-center p-4">
-                        <h4 class="text-uppercase text-primary">Full Name</h4>
-                        <p class="text-white m-0">Designation</p>
+                        <h4 class="text-uppercase text-primary">Chef Kayn</h4>
+                        <p class="text-white m-0">YumBurger</p>
                     </div>
                 </div>
             </div>
@@ -493,12 +322,12 @@
         <div class="row gx-5 justify-content-center">
             <div class="col-lg-7 text-center">
                 <div class="section-title position-relative text-center mx-auto mb-4 pb-3" style="max-width: 600px;">
-                    <h2 class="text-primary font-secondary">Special Kombo Pack</h2>
-                    <h1 class="display-4 text-uppercase text-white">Super Crispy Cakes</h1>
+                    <h2 class="text-primary font-secondary">Since 1996</h2>
+                    <h1 class="display-4 text-uppercase text-white">Super Burger Menus</h1>
                 </div>
-                <p class="text-white mb-4">Eirmod sed tempor lorem ut dolores sit kasd ipsum. Dolor ea et dolore et at sea ea at dolor justo ipsum duo rebum sea. Eos vero eos vero ea et dolore eirmod et. Dolores diam duo lorem. Elitr ut dolores magna sit. Sea dolore sed et.</p>
-                <a href="" class="btn btn-primary border-inner py-3 px-5 me-3">Shop Now</a>
-                <a href="" class="btn btn-dark border-inner py-3 px-5">Read More</a>
+                <p class="text-white mb-4">Experience the tantalizing burst of flavors in every bite of our mouthwatering, perfectly crafted burgers.</p>
+                <a href="/Menu" class="btn btn-primary border-inner py-3 px-5 me-3">Shop Now</a>
+                <a href="/about" class="btn btn-dark border-inner py-3 px-5">About Us</a>
             </div>
         </div>
     </div>
