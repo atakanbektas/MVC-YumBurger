@@ -7,6 +7,7 @@ var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 var connectionString = builder.Configuration.GetConnectionString("ConnectionStr");
+
 builder.Services.AddDbContext<YumBurgerContext>(options =>
     options.UseSqlServer(connectionString));
 
@@ -20,7 +21,6 @@ builder.Services.AddIdentity<AppUser, IdentityRole>(options =>
 
 builder.Services.ConfigureApplicationCookie(options =>
 {
-
     options.Cookie.Name = "UserCookie";
     options.SlidingExpiration = true;
     options.ExpireTimeSpan = TimeSpan.FromDays(180);

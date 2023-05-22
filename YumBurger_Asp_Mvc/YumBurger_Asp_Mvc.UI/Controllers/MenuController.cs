@@ -42,6 +42,7 @@ namespace YumBurger_Asp_Mvc.UI.Controllers
         [HttpPost]
         public async Task<IActionResult> AddChart(Menu menu, int quantity = 1)
         {
+
             var user = await _userManager.GetUserAsync(User);
             var orderInChart = await _db.Orders.Where(o => o.AppUserId == user.Id && o.OrderStatus == OrderStatus.InChart).FirstOrDefaultAsync();
 
