@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using System.Diagnostics;
 using YumBurger_Asp_Mvc.UI.Data;
 using YumBurger_Asp_Mvc.UI.Models;
@@ -16,15 +17,15 @@ namespace YumBurger_Asp_Mvc.UI.Controllers
             _context = context;
         }
 
-        public IActionResult Index()
+        public async Task<IActionResult> Index()
         {
-            var menus = _context.Menus.Where(m => m.IsSellable == true).ToList();
-            var extras = _context.Extras.Where(m => m.IsSellable == true).ToList();
+            var menus = await _context.Menus.Where(m => m.IsSellable == true).ToListAsync();
+            var extras = await _context.Extras.Where(m => m.IsSellable == true).ToListAsync();
 
 
             MenusExtrasVM menusExtras = new();
 
-            for (int i = 0; i < 6; i++)
+            for (int i = 0; i < 4; i++)
             {
                 menusExtras.Menus.Add(menus[i]);
                 menusExtras.Extra.Add(extras[i]);

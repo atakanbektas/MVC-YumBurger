@@ -27,9 +27,9 @@ namespace YumBurger_Asp_Mvc.UI.Controllers
 
 
         [HttpPost]
-        public IActionResult Details(int extraId)
+        public async Task<IActionResult> Details(int extraId)
         {
-            var selectedExtra = _db.Extras.FirstOrDefault(ext => ext.Id == extraId);
+            var selectedExtra = await _db.Extras.FirstOrDefaultAsync(ext => ext.Id == extraId);
             return View(selectedExtra);
         }
 

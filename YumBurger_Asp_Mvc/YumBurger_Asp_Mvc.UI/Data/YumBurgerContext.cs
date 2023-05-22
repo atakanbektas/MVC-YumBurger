@@ -76,7 +76,7 @@ namespace YumBurger_Asp_Mvc.UI.Data
 
             modelBuilder.Entity<OrdersExtra>(entity =>
             {
-                entity.HasKey(e => new { e.OrderId, e.ExtraId });
+                //entity.HasKey(e => new { e.OrderId, e.ExtraId });
 
                 entity.HasOne(d => d.Extra)
                     .WithMany(p => p.OrdersExtras)
@@ -93,7 +93,7 @@ namespace YumBurger_Asp_Mvc.UI.Data
 
             modelBuilder.Entity<OrdersMenu>(entity =>
             {
-                entity.HasKey(e => new { e.OrderId, e.MenuId });
+                //entity.HasKey(e => new { e.OrderId, e.MenuId });
 
                 entity.HasOne(d => d.Menu)
                     .WithMany(p => p.OrdersMenus)

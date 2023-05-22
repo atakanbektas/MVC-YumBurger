@@ -72,7 +72,7 @@
                                             <a asp-action="DeleteExtra" asp-route-id="@item.ExtraId">
                                                 <i class="fa-solid fa-rectangle-xmark" style="color: #ff6600;"></i>
                                             </a>
-                                        </td>                                       
+                                        </td>
 
                                     </tr>
                                 }
@@ -82,21 +82,22 @@
                     </tbody>
                 </table>
             </div>
-            <form asp-controller="Order" method="post">
-                <input type="hidden" asp-for="Id" />
-                <div class="col-md-3">
-                    <div class="table row" style="position:sticky; top:300px;">
-                        <button type="submit" asp-controller="Order" asp-action="Buy" class="btn btn-primary mb-3">Buy Now</button>
-                        <a asp-controller="Menu" asp-action="Index" class="btn btn-primary mb-3">Continue Shopping</a>
+
+            <div class="col-md-3 ">
+                <div class="table row bg-dark bg-gradient" style="position:sticky; top:300px;">
+                    <form asp-controller="Order" method="post">
+                        <input type="hidden" asp-for="Id" />
+                        <button type="submit" asp-controller="Order" asp-action="Buy" class="btn btn-primary">Buy Now</button>
+                        <a asp-controller="Menu" asp-action="Index" class="btn btn-primary">Continue Shopping</a>
                         <a asp-controller="Order" asp-action="ClearAll" class="btn btn-danger">Clear All</a>
                         <div class="shadow mt-3">
-                            <h3 class="h2 text-primary ">Total Amount : <i class="text-dark h4">@Model.TotalPrice  ₺</i> </h3>
+                            <h3 class="h2 text-primary ">Total Amount : <i class="text-white h4">@Model.TotalPrice  ₺</i> </h3>
 
                         </div>
+                    </form>
 
-                    </div>
                 </div>
-            </form>
+            </div>
 
 
 

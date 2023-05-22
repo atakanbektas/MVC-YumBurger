@@ -27,7 +27,7 @@
         </div>
     }
 
-    else if (await UserManager.IsInRoleAsync((await UserManager.GetUserAsync(User)), "Customer")) // user is customer
+    else // user is customer
     {
         <div class="navbar-nav ms-auto mx-lg-auto py-0 col-md-4 justify-content-end">
                 <ul class="navbar-nav">
@@ -40,9 +40,7 @@
                 <li class="nav-item">
                     <a class="nav-link text-danger" id="showToChartButton" asp-controller="Order"><i class="fa-solid fa-shopping-cart"></i></a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link text-white" asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage"><i>Your Orders</i></a>
-                    </li>
+ 
 
                 </ul>
             </div>

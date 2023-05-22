@@ -23,7 +23,7 @@ builder.Services.ConfigureApplicationCookie(options =>
 
     options.Cookie.Name = "UserCookie";
     options.SlidingExpiration = true;
-    options.ExpireTimeSpan = TimeSpan.FromDays(730);
+    options.ExpireTimeSpan = TimeSpan.FromDays(180);
 });
 
 builder.Services.Configure<IdentityOptions>(options =>
@@ -32,7 +32,7 @@ builder.Services.Configure<IdentityOptions>(options =>
     options.Password.RequireLowercase = false;
     options.Password.RequireNonAlphanumeric = false;
     options.Password.RequireUppercase = false;
-    options.Password.RequiredLength = 1;
+    options.Password.RequiredLength = 8;
     options.Password.RequiredUniqueChars = 0;
 });
 

@@ -7,6 +7,7 @@ namespace YumBurger_Asp_Mvc.UI.Models
         public AppUser()
         {
             Orders = new HashSet<Order>();
+            Address = "Lorem Ipsum Dollar!";
         }
         public string Address { get; set; } = null!;
         public virtual ICollection<Order> Orders { get; set; }

@@ -11,8 +11,8 @@ namespace YumBurger_Asp_Mvc.UI.Models.ViewModels.UsersVM
 
         [Required(ErrorMessage = "Password field is required.")]
         [DataType(DataType.Password)]
-        [MaxLength(1, ErrorMessage = "Lesser than be 1 char")]
-        [MinLength(1, ErrorMessage = "Greater than be 1 char")]
+        [MaxLength(20, ErrorMessage = "Lesser than be 20 char")]
+        [MinLength(8, ErrorMessage = "Greater than be 8 char")]
         public string Password { get; set; } = null!;
 
         [DataType(DataType.Password)]

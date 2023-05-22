@@ -1,0 +1,75 @@
+﻿@model IEnumerable<YumBurger_Asp_Mvc.UI.Models.Order>
+
+@{
+    ViewData["Title"] = "OnTheWay";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+<h1 class="text-center bg-primary bg-gradient text-dark">ORDERS - On The Way </h1>
+
+
+<table class="table table-dark table-striped table-hover">
+    <thead>
+        <tr>
+            <th>
+                Order Number
+            </th>
+            <th>
+                Order Date
+            </th>
+            <th>
+                Estimated Arrival Date
+            </th>
+            <th>
+                Total Price
+            </th>
+            <th>
+                Address
+            </th>
+            <th>
+                User
+            </th>
+            <th>
+                Deliver Order
+            </th>
+            <th>
+                Details
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @item.Id
+                </td>
+                <td>
+                    @item.OrderDate
+                </td>
+                <td>
+                    @item.EstimatedArrivalDate
+                </td>
+                <td>
+                    @item.TotalPrice
+                </td>
+                <td>
+                    Lorem Ipsum Dollar
+                </td>
+                <td>
+                    @item.AppUser.Email
+                </td>
+                <td>
+                    <form asp-controller="Order">
+                        <button type="submit" class="btn btn-outline-primary text-white" asp-action="ChangeComplete" asp-route-id="@item.Id">Complete</button>
+                    </form>
+                </td>
+                <td>
+                    <form asp-controller="Order">
+                        <button type="submit" class="btn btn-outline-success text-white" asp-action="Details" asp-route-id="@item.Id">Details</button>
+                    </form>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

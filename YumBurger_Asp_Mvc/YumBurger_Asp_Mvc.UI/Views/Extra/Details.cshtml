@@ -1,4 +1,4 @@
-﻿@model YumBurger_Asp_Mvc.UI.Models.Extra
+﻿@*@model YumBurger_Asp_Mvc.UI.Models.Extra
 
 @{
     ViewData["Title"] = "Details";
@@ -63,6 +63,77 @@
             </div>
         </dl>
     </div>
+</form>*@
+
+
+@model YumBurger_Asp_Mvc.UI.Models.Extra
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+
+<form asp-controller="Extra" asp-action="AddChart">
+    <dt>
+        <input type="hidden" asp-for="Id" />
+
+    </dt>
+    <dt>
+        <input type="hidden" asp-for="PicturePath" />
+
+    </dt>
+    <dt>
+        <input type="hidden" asp-for="Description" />
+
+    </dt>
+    <dt>
+        <input type="hidden" asp-for="Price" />
+
+    </dt>
+    <dt>
+        <input type="hidden" asp-for="Name" />
+
+    </dt>
+    <div class="jumbotron text-md-center">
+        <h1 class="display-4 text-primary">@Model.Name</h1>
+        <p class="lead">@Model.Description</p>
+        <img class="img-fluid w-25 h-25" src="~/assest/img/ExtrasPictures/@Model.PicturePath" alt="" />
+        <hr class="my-4">
+        <div class="lead">
+            <h3 class="h3 text-primary">
+                Quantity :
+                <input class="text-center navbar-text" type="number" value="1" min="1" max="10" name="quantity" id="quantityInput" />
+                <p class="text-danger" id="totalPrice">
+                    @(string.Format("{0:N2}", Model.Price)) ₺
+                </p>
+
+            </h3>
+
+        </div>
+        <p class="lead">
+            <button type="submit" class="btn btn-outline-success btn-lg">Add My Chart</button>
+            <a class="btn btn-outline-success btn-lg" asp-controller="Menu" asp-action="Index">Back to Shopping</a>
+            <a class="btn btn-outline-success btn-lg" asp-controller="Order" asp-action="Index">Go to Chart</a>
+        </p>
+    </div>
 </form>
 
 
+<script>
+    var quantityInput = document.getElementById("quantityInput");
+    var price = parseFloat(@Model.Price.ToString("N2").Replace(",", "."));
+
+    quantityInput.addEventListener("input", function () {
+        var min = 1;
+        var max = 10;
+        if (quantityInput.value < min) {
+            quantityInput.value = min;
+        }
+        if (quantityInput.value > max) {
+            quantityInput.value = max;
+        }
+
+        var totalPrice = price * parseFloat(quantityInput.value);
+        document.getElementById("totalPrice").innerText = totalPrice.toFixed(2) + " ₺";
+    });
+</script>

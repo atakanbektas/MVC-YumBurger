@@ -52,26 +52,35 @@
                         <div class="bg-success rounded-circle border border-2 border-white position-absolute end-0 bottom-0 p-1"></div>
                     </div>
                     <div class="ms-3">
-                        <h6 class="mb-0">Admin</h6>
+                        <h6 class="mb-0">@User.Identity.Name</h6>
                         <span>@DateTime.Now.ToShortDateString()</span>
                     </div>
                 </div>
                 <div class="navbar-nav w-100">
                     <a asp-area="Admin" asp-controller="Home" asp-action="Index" class="nav-item nav-link"><i class="fa fa-tachometer-alt me-2"></i>Home Page</a>
+                    <a asp-area="Admin" asp-controller="Finance" asp-action="Index" class="nav-item nav-link"><i class="fa fa-table me-2"></i>Financial Table</a>
                     <div class="nav-item dropdown">
                         <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown"><i class="fa fa-laptop me-2"></i>Edit</a>
                         <div class="dropdown-menu bg-transparent border-0">
                             <a asp-area="Admin" asp-controller="Menu" asp-action="Index" class="dropdown-item">Menu</a>
-                            <a href="typography.html" class="dropdown-item">Extra</a>
+                            <a asp-area="Admin" asp-controller="Extra" asp-action="Index" class="dropdown-item">Extra</a>
                         </div>
                     </div>
-                    <a href="table.html" class="nav-item nav-link"><i class="fa fa-table me-2"></i>Financial Table</a>
+                    <div class="nav-item dropdown">
+                        <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown"><i class="fa fa-laptop me-2"></i>Orders</a>
+                        <div class="dropdown-menu bg-transparent border-0">
+                            <a asp-area="Admin" asp-controller="Order" asp-action="OnTheWay" class="dropdown-item">On The Way</a>
+                            <a asp-area="Admin" asp-controller="Order" asp-action="Delivered" class="dropdown-item">Delivered</a>
+                        </div>
+                    </div>
                     <div class="nav-item dropdown">
                         <a href="#" class="nav-link dropdown-toggle active" data-bs-toggle="dropdown"><i class="far fa-file-alt me-2"></i>Account</a>
                         <div class="dropdown-menu bg-transparent border-0">
-                            <a href="signin.html" class="dropdown-item">Admin Account</a>
-                            <a href="signup.html" class="dropdown-item">Customer Account</a>
-                            <a href="signup.html" class="dropdown-item">Logout</a>
+                            <a asp-area="Admin" asp-controller="Home" asp-action="Index" class="dropdown-item">Admin Account</a>
+                            <a asp-area="" asp-controller="Home" asp-action="Index" class="dropdown-item">Customer Account</a>
+                            <form asp-area="" asp-controller="Account" asp-action="Logout" method="post">
+                                <button type="submit" class="dropdown-item"> Logout</button>
+                            </form>
                         </div>
                     </div>
                 </div>
@@ -173,8 +182,8 @@
             <main role="main" class="p-5 bg-light rounded">
                 @RenderBody()
             </main>
-            @*        
-                
+            @*
+
             <div class="container-fluid pt-4 px-4">
             <div class="row vh-100 bg-light rounded align-items-center justify-content-center mx-0">
             <div class="col-md-6 text-center">
@@ -184,18 +193,18 @@
             </div>*@
             <!-- Blank End -->
             <!-- Footer Start -->
-           @* <div class="container-fluid pt-4 px-4">
-                <div class="bg-light rounded-top p-4">
-                    <div class="row">
-                        <div class="col-12 col-sm-6 text-center text-sm-start">
-                            &copy; <a href="#">Your Site Name</a>, All Right Reserved.
-                        </div>
-                        <div class="col-12 col-sm-6 text-center text-sm-end">
-                            <!--/*** This template is free as long as you keep the footer author’s credit link/attribution link/backlink. If you'd like to use the template without the footer author’s credit link/attribution link/backlink, you can purchase the Credit Removal License from "https://htmlcodex.com/credit-removal". Thank you for your support. ***/-->
-                            Designed By <a href="https://htmlcodex.com">HTML Codex</a>
-                        </div>
-                    </div>
-                </div>
+            @* <div class="container-fluid pt-4 px-4">
+            <div class="bg-light rounded-top p-4">
+            <div class="row">
+            <div class="col-12 col-sm-6 text-center text-sm-start">
+            &copy; <a href="#">Your Site Name</a>, All Right Reserved.
+            </div>
+            <div class="col-12 col-sm-6 text-center text-sm-end">
+            <!--/*** This template is free as long as you keep the footer author’s credit link/attribution link/backlink. If you'd like to use the template without the footer author’s credit link/attribution link/backlink, you can purchase the Credit Removal License from "https://htmlcodex.com/credit-removal". Thank you for your support. ***/-->
+            Designed By <a href="https://htmlcodex.com">HTML Codex</a>
+            </div>
+            </div>
+            </div>
             </div>*@
             <!-- Footer End -->
         </div>

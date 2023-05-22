@@ -36,16 +36,17 @@ namespace YumBurger_Asp_Mvc.UI.Controllers
             return View(null);
         }
 
+
         public async Task<IActionResult> ClearAll()
         {
             var user = await _userManager.GetUserAsync(User);
             var deletedOrder = await _db.Orders.Include(o => o.AppUser).FirstOrDefaultAsync(o => o.AppUser == user);
             if (deletedOrder != null)
             {
-                user.Orders.Remove(deletedOrder);
+                _db.Orders.Remove(deletedOrder);
                 await _db.SaveChangesAsync();
             }
-            return RedirectToAction("Index", "Menu");
+            return RedirectToAction("Index", "Order");
         }
 
 
@@ -75,7 +76,7 @@ namespace YumBurger_Asp_Mvc.UI.Controllers
         public async Task<IActionResult> DeleteExtra(int id)
         {
             var user = await _userManager.GetUserAsync(User);
-            var order = _db.Orders.Include(o => o.AppUser).Include(o => o.OrdersMenus).Include(o => o.OrdersExtras).FirstOrDefault(o => o.AppUser == user && o.OrderStatus == OrderStatus.InChart);
+            var order = await _db.Orders.Include(o => o.AppUser).Include(o => o.OrdersMenus).Include(o => o.OrdersExtras).FirstOrDefaultAsync(o => o.AppUser == user && o.OrderStatus == OrderStatus.InChart);
 
             if (order != null)
             {

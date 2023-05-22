@@ -19,10 +19,10 @@ namespace YumBurger_Asp_Mvc.UI.Controllers
             _db = context;
             _userManager = userManager;
         }
-        public IActionResult Index()
+        public async Task<IActionResult> Index()
         {
-            var menus = _db.Menus.Where(m => m.IsSellable == true).ToList();
-            var extras = _db.Extras.Where(m => m.IsSellable == true).ToList();
+            var menus = await _db.Menus.Where(m => m.IsSellable == true).ToListAsync();
+            var extras = await _db.Extras.Where(m => m.IsSellable == true).ToListAsync();
             MenusExtrasVM menusExtras = new()
             {
                 Extra = extras,
@@ -33,9 +33,9 @@ namespace YumBurger_Asp_Mvc.UI.Controllers
 
 
         [HttpPost]
-        public IActionResult Details(int menuId)
+        public async Task<IActionResult> Details(int menuId)
         {
-            var selectedMenu = _db.Menus.FirstOrDefault(menu => menu.Id == menuId);
+            var selectedMenu = await _db.Menus.FirstOrDefaultAsync(menu => menu.Id == menuId);
             return View(selectedMenu);
         }
 

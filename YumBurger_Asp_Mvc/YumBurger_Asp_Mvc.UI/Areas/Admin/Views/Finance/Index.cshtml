@@ -1,0 +1,116 @@
+﻿@model IEnumerable<YumBurger_Asp_Mvc.UI.Models.Order>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+<h1 class="text-center text-danger bg-dark bg-gradient">Finance Status</h1>
+
+
+<table class="table text-center table-dark text-white">
+
+    <thead>
+        <tr>
+
+            <th class="h1 text-white">
+                Order Count
+            </th>
+            <th class="h1 text-white">
+                Total Amount
+            </th>
+
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td class="h1 text-success">
+                @Model.Count()
+            </td>
+            <td class="h1 text-success">
+                @ViewBag.TotalPrice ₺
+
+            </td>
+        </tr>
+    </tbody>
+</table>
+<div>
+
+    <table class="table text-center">
+        <thead>
+            <tr>
+                <th>
+                    Başlangıç Tarihi
+                </th>
+                <th>
+                    Bitiş Tarihi
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+
+            <tr>
+                <form method="post">
+                <td>
+                    <label for="appt">Select start date:</label>
+                    <input type="datetime-local" id="start" name="start" placeholder="@DateTime.Now">
+                </td>
+                <td>
+                    <label for="appt">Select stop date:</label>
+                    <input type="datetime-local" id="stop" name="stop" value="@DateTime.Now">
+                </td>
+                <td>
+                    <button type="submit" asp-action="Index" class="btn btn-outline-danger">Get Table</button>
+                </td>
+                </form>
+
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+
+<table class="table table-dark">
+    <thead>
+        <tr>
+            <th>
+                Order Number
+            </th>
+            <th>
+                Order Date
+            </th>
+            <th>
+                Arrival Date
+            </th>
+            <th>
+                Total Price
+            </th>
+
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @item.Id
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.OrderDate)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ActualArrivalDate)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.TotalPrice)
+                </td>
+                <td>
+                    <form>
+                        <button type="submit" asp-controller="Order" asp-action="Details" asp-route-id="@item.Id">Details</button>
+                    </form>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

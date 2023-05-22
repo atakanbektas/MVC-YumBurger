@@ -131,7 +131,7 @@ namespace YumBurger_Asp_Mvc.UI.Areas.Admin.Views.Home
                 }
             }
             await _context.SaveChangesAsync();
-            return View();
+            return RedirectToAction("Index");
         }
 
 
