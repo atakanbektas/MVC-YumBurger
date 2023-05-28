@@ -40,7 +40,7 @@ namespace YumBurger_Asp_Mvc.UI.Controllers
         public async Task<IActionResult> ClearAll()
         {
             var user = await _userManager.GetUserAsync(User);
-            var deletedOrder = await _db.Orders.Include(o => o.AppUser).FirstOrDefaultAsync(o => o.AppUser == user);
+            var deletedOrder = _db.Orders.Include(o => o.AppUser).Include(o => o.OrdersMenus).Include(o => o.OrdersExtras).FirstOrDefault(o => o.AppUser == user && o.OrderStatus == OrderStatus.InChart);
             if (deletedOrder != null)
             {
                 _db.Orders.Remove(deletedOrder);
